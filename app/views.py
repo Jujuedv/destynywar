@@ -1,5 +1,14 @@
-from app import app
-from flask import render_template, session
+from app import app, db
+from flask import render_template, session, g
+from app.models import Counter
+
+@app.before_request
+def init_db():
+    if not Counter.query.filter_by(id="Visits").first():
+        counter = Counter(id="Visits", count=0)
+        db.session.add(counter)
+        db.session.commit()
+    g.visits = Counter.query.filter_by(id="Visits").first()
 
 @app.route('/')
 def hello_world():
@@ -7,4 +16,5 @@ def hello_world():
         session["visits"] = 1
     else:
         session["visits"] += 1
-    return render_template("index.html", visits=session["visits"])
+    g.visits.increase()
+    return render_template("index.html", visits_session=session["visits"], visits_total=g.visits.count)
