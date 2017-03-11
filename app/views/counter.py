@@ -1,6 +1,8 @@
 from app import app, db
 from flask import render_template, session, g
 from app.models import Counter
+from flask_login import login_required
+
 
 @app.before_request
 def init_db():
@@ -10,7 +12,9 @@ def init_db():
         db.session.commit()
     g.visits = Counter.query.filter_by(id="Visits").first()
 
+
 @app.route('/')
+@login_required
 def hello_world():
     if "visits" not in session:
         session["visits"] = 1

@@ -1,3 +1,4 @@
+WTF_CSRF_ENABLED = True
 SECRET_KEY = "TODO_DO_THIS_PROPERLY" #TODO do this properly
 
 import os

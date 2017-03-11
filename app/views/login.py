@@ -1,5 +1,9 @@
 from app import app, lm
+from flask import render_template, flash, url_for, redirect
+from app.forms.loginform import LoginForm
+from flask_login import login_user, logout_user, login_required
 from app.models.user import User
+
 
 @lm.user_loader
 def load_user(id):
@@ -7,4 +11,19 @@ def load_user(id):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    pass
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=str(form.username.data)).first()
+        if user and user.validate(form.password.data):
+            login_user(user)
+            flash("Logged in successfully.")
+            return form.redirect("index")
+        else:
+            flash("Password incorrect.")
+    return render_template("login.html", form=form)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))

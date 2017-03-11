@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center>
+<table border="0" cellpadding="5" cellspacing="10" class="main">
+{% include "menu.html" %}
+    <tr>
+      <td class="tp" style="text-align:center;"><img src="static/images/cooltext2.png"/></td>
+    </tr>
+    <tr>
+      <td class="tp">
+		  <table border="0" cellpadding="5" cellspacing="5">
+			<tr>
+				<td>
+
+				  <form class="kasten" target="_top" method="post" name="login"><br>
+                      <table border="0" cellpadding="0" cellspacing="0">
+					  <tbody>
+						<tr>
+						  <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
+						  <td>{{ form.username(size=20) }}&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr>
+						  <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Passwort: </td>
+						  <td>{{ form.password(size=20) }}&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr>
+						  <td></td>
+						  <td><input value="Einloggen" type="submit">&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+					  </tbody>
+					</table>
+					<br>
+				  </form>
+				</td>
+				<td>
+				  <p style="width: 300px;" valign="top">Destyny War ist ein Browsergame, das in der Zukunft spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum beherschen kann. </p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:center;">
+					<a href="#"><img style="border-style: none;" src="static/images/button.png" alt="Jetzt mitspielen."/></a>
+				</td>
+			</tr>
+		  </table>
+      </td>
+    </tr>
+
+	{% include "flash.html" %}
+
+</table>
+</center>
+
+{% endblock %}

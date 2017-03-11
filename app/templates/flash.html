@@ -1,0 +1,11 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+        <tr>
+            <td class="tp" style="text-align:center;">
+                {{ message }}
+            </td>
+        </tr>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
