@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, session, g
 from app.models import Counter
 from flask_login import login_required
-
+from flask_login import current_user
 
 @app.before_request
 def init_db():

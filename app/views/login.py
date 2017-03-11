@@ -1,9 +1,12 @@
 from app import app, lm
-from flask import render_template, flash, url_for, redirect
+from flask import render_template, flash, url_for, redirect, g
 from app.forms.loginform import LoginForm
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from app.models.user import User
 
+@app.before_request
+def before_request():
+    g.user = current_user
 
 @lm.user_loader
 def load_user(id):
@@ -20,7 +23,7 @@ def login():
             return form.redirect("index")
         else:
             flash("Password incorrect.")
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, title="Login")
 
 @app.route("/logout")
 @login_required
