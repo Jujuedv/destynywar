@@ -15,7 +15,7 @@ def init_db():
 
 @app.route('/')
 @login_required
-def hello_world():
+def index():
     if "visits" not in session:
         session["visits"] = 1
     else:

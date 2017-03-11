@@ -29,6 +29,8 @@ class RedirectForm(FlaskForm):
 
 
     def redirect(self, endpoint='index', **values):
+        if "login" in self.next.data or "register" in self.next.data:
+            return redirect(url_for("index"))
         if is_safe_url(self.next.data):
             return redirect(self.next.data)
         target = get_redirect_target()
