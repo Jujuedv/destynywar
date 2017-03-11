@@ -23,8 +23,6 @@ class User(db.Model):
         return str(self.id)
 
     def validate(self, password):
-        print(password)
-        print(self.password)
         return pbkdf2_sha256.verify(password, self.password)
 
     def __repr__(self):
