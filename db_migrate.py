@@ -1,3 +1,4 @@
+#!/bin/python3
 # from https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 # execute this script to create a new migration, updating the database to match the models, without losing data
 

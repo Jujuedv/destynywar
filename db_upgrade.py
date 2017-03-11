@@ -1,3 +1,4 @@
+#!/bin/python3
 # from https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 
 from migrate.versioning import api
