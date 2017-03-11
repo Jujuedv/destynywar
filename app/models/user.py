@@ -7,6 +7,11 @@ class User(db.Model):
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
 
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = pbkdf2_sha256.using(rounds=8000, salt_size=10).hash(password)
+
     @property
     def is_authenticated(self):
         return True
