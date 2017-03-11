@@ -39,15 +39,18 @@ body {
     z-index: -1;
     width: 100%;
     height: 652px;
-    background: transparent url(/static/images/bg_image.jpg) no-repeat top center;
+    background: transparent url(/static/images/star_start.png) no-repeat top center;
 }
 
-.tp {
+.border {
     opacity: 0.700;
     border-style: solid;
-    border-width: 1px;
-    border-color: #00FF00;
+    border-width: 3px;
+    border-color: #00B700;
     background-color: #111;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 .col > td {
@@ -64,45 +67,64 @@ h1 {
 }
 
 h2 {
-    font-size: 9mm;
+    font-size: 10mm;
 }
 
 h3 {
-    font-size: 8mm;
+    font-size: 9mm;
 }
 
 h4 {
-    font-size: 7mm;
+    font-size: 8mm;
 }
 
 h5 {
-    font-size: 6mm;
+    font-size: 7mm;
 }
 
 h6 {
+    font-size: 6mm;
+}
+
+h7 {
     font-size: 5mm;
 }
 
+h8 {
+    font-size: 4mm;
+}
+
+h9 {
+    font-size: 3mm;
+}
+
 a:link {
-    color: #FFFFEE;
+    color: #65B0FF;
 }
 
 a:visited {
-    color: #FFFFEE;
+    color: #9B65FF;
 }
 
 a:active {
-    color: #FFFFEE;
+    color: #4376AE;
 }
 
 .kasten {
     border: 3px inset rgb(0, 0, 0);
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .brett {
     border: 3px outset rgb(0, 0, 0);
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 #dw_desc {
-    width: 300px;
+    width: 345px;
+    margin-left: 5px;
 }
