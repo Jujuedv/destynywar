@@ -2,7 +2,7 @@ body {
     font-family: Arial;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    background: #2C2C2C url(images/star_start.png) repeat;
+    background: #2C2C2C url(/static/images/star_start.png) repeat;
 }
 
 .background_layer {
@@ -12,7 +12,7 @@ body {
     z-index: -1;
     width: 100%;
     height: 652px;
-    background: transparent url(images/bg_image.jpg) no-repeat top center;
+    background: transparent url(/static/images/bg_image.jpg) no-repeat top center;
 }
 
 .tp {
