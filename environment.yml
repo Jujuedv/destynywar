@@ -1,0 +1,30 @@
+name: destynywar
+channels:
+- defaults
+dependencies:
+- click=6.7=py36_0
+- flask=0.12=py36_0
+- itsdangerous=0.24=py36_0
+- jinja2=2.9.5=py36_0
+- markupsafe=0.23=py36_2
+- pip=9.0.1=py36_1
+- python=3.6.0=0
+- setuptools=27.2.0=py36_1
+- vs2015_runtime=14.0.25123=0
+- werkzeug=0.11.15=py36_0
+- wheel=0.29.0=py36_0
+- pip:
+  - decorator==4.0.11
+  - flask-login==0.4.0
+  - flask-sqlalchemy==2.2
+  - flask-wtf==0.14.2
+  - passlib==1.7.1
+  - pbr==2.0.0
+  - six==1.10.0
+  - sqlalchemy==1.1.6
+  - sqlalchemy-migrate==0.11.0
+  - sqlparse==0.2.3
+  - tempita==0.5.2
+  - wtforms==2.1
+prefix: D:\Anaconda35\envs\destynywar
+
