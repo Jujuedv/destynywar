@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-
-Your visits this session: {{ visits_session }}
-
-Total visits: {{ visits_total }}
+    <tr>
+        <td class="tp textcenter"><h1>Index</h1></td>
+    </tr>
+    <tr>
+        <td class="tp">
+            <p>Welcome back, {{ g.user.username }}!</p>
+            <p>Your visits this session: {{ visits_session }}</p>
+            <p>Total visits: {{ visits_total }}</p>
+        </td>
+    </tr>
 
 {% endblock %}

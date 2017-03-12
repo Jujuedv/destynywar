@@ -1,61 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-
-<center>
-<table border="0" cellpadding="5" cellspacing="10" class="main">
-{% include "menu.html" %}
     <tr>
-      <td class="tp" style="text-align:center;"><img src="static/images/cooltext2.png"/></td>
+        <td class="tp textcenter"><img src="static/images/cooltext2.png"/></td>
     </tr>
     <tr>
-      <td class="tp">
-		  <table border="0" cellpadding="5" cellspacing="5">
-			<tr>
-				<td>
-
-				  <form class="kasten" target="_top" method="post" name="login"><br>
-                      {{ form.hidden_tag() }}
-                      <table border="0" cellpadding="0" cellspacing="0">
-					  <tbody>
-						<tr>
-						  <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
-						  <td>{{ form.username(size=20) }}&nbsp;&nbsp;&nbsp;</td>
-                            {% for error in form.username.errors %}
-                            <td><span style="color: red;">[{{ error }}]</span></td>
-                            {% endfor %}
-						</tr>
-						<tr>
-						  <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Passwort: </td>
-						  <td>{{ form.password(size=20) }}&nbsp;&nbsp;&nbsp;</td>
-                            {% for error in form.username.errors %}
-                            <td><span style="color: red;">[{{ error }}]</span></td>
-                            {% endfor %}
-						</tr>
-						<tr>
-						  <td></td>
-						  <td><input value="Einloggen" type="submit">&nbsp;&nbsp;&nbsp;</td>
-						</tr>
-					  </tbody>
-					</table>
-					<br>
-				  </form>
-				</td>
-				<td>
-				  <p style="width: 300px;" valign="top">Destyny War ist ein Browsergame, das in der Zukunft spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum beherschen kann. </p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align:center;">
-					<a href="{{ url_for("register") }}"><img style="border-style: none;" src="static/images/button.png" alt="Jetzt mitspielen."/></a>
-				</td>
-			</tr>
-		  </table>
-      </td>
+        <td class="tp">
+            <table border="0" cellpadding="5" cellspacing="5">
+                <tr>
+                    <td class="top">
+                        <form class="kasten" method="post" name="login"><br>
+                            {{ form.hidden_tag() }}
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td class="{{ "left error" if form.username.errors else "left" }}">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
+                                    <td>{{ form.username(size=20) }}&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="{{ "left error" if form.password.errors else "left" }}">&nbsp;&nbsp;&nbsp;Passwort:</td>
+                                    <td>{{ form.password(size=20) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input value="Einloggen" type="submit"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </form>
+                    </td>
+                    <td class="top">
+                        <p id="dw_desc" class="kasten top"><br>Destyny War ist ein Browsergame, das in der Zukunft
+                            spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
+                            beherschen kann.<br> </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <a href="{{ url_for("register") }}"><img style="border-style: none;"
+                                                                 src="static/images/button.png"
+                                                                 alt="Jetzt mitspielen."/></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
     </tr>
-
-	{% include "flash.html" %}
-
-</table>
-</center>
 
 {% endblock %}

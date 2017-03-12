@@ -1,15 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-  <title>Destyny War</title>
-  <link rel="shortcut icon" href="static/images/logo.jpg"/>
-  <link href="static/css/main.css" rel="stylesheet">
+    {% if title %}
+    <title>{{ title }} - Destyny War</title>
+    {% else %}
+    <title>Destyny War</title>
+    {% endif %}
+    <link rel="shortcut icon" href="{{ url_for("static", filename="images/logo.jpg") }}"/>
+    <link href="{{ url_for("static", filename="css/main.css") }}" rel="stylesheet">
 </head>
 
 <body>
+<table border="0" cellpadding="5" cellspacing="10" class="main centered">
+    {% include "menu.html" %}
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    {% include "flash.html" %}
+</table>
 </body>
-
 </html>
