@@ -6,6 +6,7 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
+    planets = db.relationship('Planet', back_populates='owner')
 
     def __init__(self, username, email, password):
         self.username = username
