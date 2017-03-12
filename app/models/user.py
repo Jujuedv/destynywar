@@ -8,6 +8,9 @@ class User(db.Model):
     password = db.Column(db.String(128))
     planets = db.relationship('Planet', back_populates='owner')
 
+    mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
+    mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic", foreign_keys="Holomail.receiver_id")
+
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
@@ -30,6 +33,11 @@ class User(db.Model):
 
     def validate(self, password):
         return pbkdf2_sha256.verify(password, self.password)
+
+    def allowed_to_read(self, mail):
+        if mail.sender == self or mail.receiver == self:
+            return True
+        return False
 
     def __repr__(self):
         return "<User {}>".format(self.username)
