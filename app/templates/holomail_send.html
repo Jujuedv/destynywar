@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <tr>
+        <td class="tp textcenter"><h1>Holopost</h1></td>
+    </tr>
+    <tr>
+    <td class="textcenter">
+        Holopost schreiben&nbsp;&nbsp;
+        <a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
+        <a href="{{ url_for("holopost") }}">Posteingang</a>
+    </td>
+    </tr>
+    <tr>
+        <td class="tp">
+            <table border="0" cellpadding="5" cellspacing="5">
+                <tr>
+                    <td class="top">
+                        <form class="kasten" method="post" name="holomail"><br>
+                            {{ form.hidden_tag() }}
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td class="{{ "left error" if form.receiver.errors else "left" }}">&nbsp;&nbsp;&nbsp;Empfänger:&nbsp; </td>
+                                    <td>{{ form.receiver(size=20) }}&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="{{ "left error" if form.subject.errors else "left" }}">
+                                        &nbsp;&nbsp;&nbsp;Betreff:&nbsp; </td>
+                                    <td>{{ form.subject(size=20) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="{{ "left error" if form.body.errors else "left" }}">&nbsp;&nbsp;&nbsp;Nachricht:
+                                    </td>
+                                    <td>{{ form.body(cols=40, rows=10) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input value="Senden" type="submit"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+{% endblock %}
