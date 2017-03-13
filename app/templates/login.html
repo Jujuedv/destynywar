@@ -14,11 +14,11 @@
                                 <tbody>
                                 <tr>
                                     <td class="{{ "left error" if form.username.errors else "left" }}">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
-                                    <td>{{ form.username(size=20) }}&nbsp;&nbsp;&nbsp;</td>
+                                    <td>{{ form.username(size=20, class="border") }}&nbsp;&nbsp;&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td class="{{ "left error" if form.password.errors else "left" }}">&nbsp;&nbsp;&nbsp;Passwort:</td>
-                                    <td>{{ form.password(size=20) }}</td>
+                                    <td>{{ form.password(size=20, class="border") }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
