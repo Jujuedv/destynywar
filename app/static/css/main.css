@@ -13,15 +13,15 @@ a:visited {
 }
 
 a:hover {
-    color: #00B700;
+    color: #00E000;
 }
 
 a:active {
-    color: #00B700;
+    color: #00E000;
 }
 
 .mailTable tr:not(:first-child):hover{
-    background-color: #222222;
+    background-color: #005000;
 }
 
 .mailTable tr{
@@ -31,7 +31,7 @@ a:active {
 .mailTable{
     margin-left: auto;
     margin-right: auto;
-    width: 750px;
+    width: 760px;
     border-collapse: collapse;
 }
 
@@ -48,6 +48,12 @@ a:active {
     margin-left: auto;
     margin-right: auto;
     width: 800px;
+}
+
+.centered_layer2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 760px;
 }
 
 .textcenter{
@@ -101,8 +107,8 @@ a:active {
 }
 
 h1 {
-    font-size: 20mm;
-    margin: 0;
+    font-size: 18mm;
+    margin: auto;
     height: 103px;
 }
 
