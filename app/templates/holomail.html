@@ -60,13 +60,13 @@
             {% if mails.has_prev %}
                 <a href="{{ url_for("holopost", page=mails.prev_num) }}" > <- neuer </a>
             {% else %}
-                <- neuer
+                <h7 class="hidden"><- neuer</h7>
             {% endif %}
             &nbsp;&nbsp;
             {% if mails.has_next %}
                 <a href="{{ url_for("holopost", page=mails.next_num) }}" > älter -> </a>
             {% else %}
-                älter ->
+                <h7 class="hidden">älter -></h7>
             {% endif %}
         </td>
         </tr>
