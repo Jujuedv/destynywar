@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <tr>
-        <td class="tp textcenter"><h1>Holopost</h1></td>
+        <td class="border textcenter"><h1>Holopost</h1></td>
     </tr>
-    <tr>
+    <tr class="border">
     <td class="textcenter">
         <a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
         <a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
@@ -12,14 +12,14 @@
     </tr>
     {% if not mails.items %}
         <tr>
-            <td class="tp">
+            <td class="border">
                 Du hast noch keine Holopost.
             </td>
         </tr>
     {% else %}
         <tr>
-            <td class="tp">
-                <table class="mailtable" border="0" cellpadding="5" cellspacing="5">
+            <td class="border">
+                <table class="mailtable centered_layer2" border="0" cellpadding="5" cellspacing="5">
                     <tr>
                         <td>
                             Sender
@@ -60,13 +60,13 @@
             {% if mails.has_prev %}
                 <a href="{{ url_for("holopost", page=mails.prev_num) }}" > <- neuer </a>
             {% else %}
-                <- neuer
+                <h7 class="hidden"><- neuer</h7>
             {% endif %}
             &nbsp;&nbsp;
             {% if mails.has_next %}
                 <a href="{{ url_for("holopost", page=mails.next_num) }}" > älter -> </a>
             {% else %}
-                älter ->
+                <h7 class="hidden">älter -></h7>
             {% endif %}
         </td>
         </tr>
