@@ -52,7 +52,7 @@ class User(db.Model):
         self.allMailsRead()
         return "<User {}>".format(self.username)
 
-    def allMailsRead(self):
+    def all_mails_read(self):
         mails = self.mails_received.order_by(Holomail.timestamp.desc())
         for i in mails:
             if not i.read:
