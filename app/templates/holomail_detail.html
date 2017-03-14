@@ -41,6 +41,7 @@
                 <tr>
                     <td>
                         <a href="{{ url_for("holopost_write", receiver=mail.sender.username) }}">Antworten</a>
+                        <a href="{{ url_for("holopost_delete", id=mail.id) }}">Löschen</a>
                     </td>
                 </tr>
             </table>

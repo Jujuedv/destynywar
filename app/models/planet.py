@@ -7,7 +7,6 @@ import math
 from app import db
 from app.models import Globalvars
 
-
 class Planet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
@@ -45,7 +44,7 @@ class Planet(db.Model):
 
     settings_plasmatoenergy = db.Column(db.Float)
 
-    lastupdate = db.Column(db.DateTime, default=datetime.now)
+    lastupdate = db.Column(db.DateTime)
 
     __table_args__ = (db.UniqueConstraint('x', 'y', name='__coord_uc'),
                       )

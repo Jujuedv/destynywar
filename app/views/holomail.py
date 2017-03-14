@@ -11,14 +11,14 @@ from app.forms.mailform import MailForm
 @app.route("/holopost/<int:page>")
 @login_required
 def holopost(page=1):
-    mails = g.user.mails_received.order_by(Holomail.timestamp.desc()).paginate(page, 10, False)
+    mails = Holomail.query.filter(Holomail.receiver == g.user, Holomail.deleted_receiver == False).order_by(Holomail.timestamp.desc()).paginate(page, 10, False)
     return render_template("holomail.html", title="Holopost", mails=mails)
 
 @app.route("/holopost/out")
 @app.route("/holopost/out/<int:page>")
 @login_required
 def holopost_sent(page=1):
-    mails = g.user.mails_sent.order_by(Holomail.timestamp.desc()).paginate(page, 10, False)
+    mails = Holomail.query.filter(Holomail.sender == g.user, Holomail.deleted_sender == False).order_by(Holomail.timestamp.desc()).paginate(page, 10, False)
     return render_template("holomail_sent.html", title="Holopost", mails=mails)
 
 
@@ -34,6 +34,16 @@ def holopost_detail(id):
     else:
         return abort(403)
 
+@app.route("/holopost/view/<int:id>/delete")
+@login_required
+def holopost_delete(id):
+    mail = Holomail.query.filter_by(id=id).first()
+    if mail and g.user.allowed_to_read(mail):
+        mail.delete(g.user)
+        db.session.commit()
+        return redirect(url_for("holopost"))
+    else:
+        return abort(403)
 
 @app.route("/holopost/write", methods=["GET", "POST"])
 @app.route("/holopost/write/<string:receiver>", methods=["GET", "POST"])
@@ -48,7 +58,7 @@ def holopost_write(receiver=None):
     if form.validate_on_submit():
         receiver = User.query.filter_by(username=form.receiver.data).first()
         mail = Holomail(receiver=receiver, sender=g.user, timestamp=datetime.now(), subject=form.subject.data,
-                        body="\n"+form.body.data, read=False)
+                        body="\n"+form.body.data, read=False, deleted_sender=False, deleted_receiver=False)
         db.session.add(mail)
         db.session.commit()
         flash("Holopost gesendet!")
