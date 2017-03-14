@@ -37,6 +37,10 @@ a:active {
     background-color: #005000;
 }
 
+.highlight {
+    background-color: #222222;
+}
+
 .mailTable tr{
     border: 2px solid grey;
 }

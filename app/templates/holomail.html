@@ -36,7 +36,7 @@
                     </tr>
                     {% for mail in mails.items %}
 
-                        <tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'">
+                        <tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'" class="{{ "" if mail.read else "highlight" }}">
                             <td>
                                 {{ mail.sender.username }}
                             </td>
