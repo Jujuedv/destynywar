@@ -1,32 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-	<section>
+	<section class="text-center">
 		<img src="static/images/cooltext2.png"/>
 	</section>
-	<section>
-		<div class="half-left">
-                            {{ form.hidden_tag() }}
+	<section class="border">
+		<form class="half-left" method="post" name="login">
+            {{ form.hidden_tag() }}
 			<div>
 				<div class="third-left text-right">
-                    Benutzername:<br>Passwort:
+                    Benutzername:
 				</div>
 				<div class="third-right">
-					{{ form.username(class="entry") }}<br>
+					{{ form.username(class="entry") }}
+				</div>
+				<div class="third-left text-right">
+                    Passwort:
+				</div>
+				<div class="third-right">
 					{{ form.password(class="entry") }}<br>
                     <input value="Einloggen" type="submit">
 				</div>
 			</div>
-        </div>
+        </form>
 		<div class="half-right">
                         <p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
                             spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
                             beherschen kann.<br> </p>
 		</div>
 	</section>
-    <section>
-                        <a href="{{ url_for("register") }}"><img style="border-style: none;"
-                                                                 src="static/images/button.png"
-                                                                 alt="Jetzt mitspielen."/></a>
+    <section class="text-center">
+        <a href="{{ url_for("register") }}"><img style="border-style: none;" src="static/images/button.png" alt="Jetzt mitspielen."/></a>
 	</section>
                     
 
