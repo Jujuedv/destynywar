@@ -33,9 +33,12 @@
 					<td class="text-right">
 						Zeit
 					</td>
+					<td class="text-right">
+						Gelesen
+					</td>
 				</tr>
 				{% for mail in mails.items %}
-					<tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'">
+					<tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'" class="">
 						<td>
 							{{ mail.sender.username }}
 						</td>
@@ -47,6 +50,13 @@
 						</td>
 						<td class="text-right">
 							{{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
+						</td>
+						<td class="text-right">
+							{% if mail.read %}
+								<img class="mailimage" src="{{ url_for("static", filename="images/HolomailGelesen.png") }}">
+							{% else %}
+								<img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}">
+							{% endif %}
 						</td>
 					</tr>
 				{% endfor %}
