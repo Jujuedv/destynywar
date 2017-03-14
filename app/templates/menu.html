@@ -18,7 +18,7 @@
 			</div>
 			<div class="inline">
 				<a href="{{ url_for("holopost") }}">
-					{% if g.user.allMailsRead() %}
+					{% if g.user.all_mails_read() %}
 						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailGelesen.png") }}" style="text-decoration: none">
 					{% else %}
 						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}" style="text-decoration: none">
