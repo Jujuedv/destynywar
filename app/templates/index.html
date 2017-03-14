@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <tr>
+    <section class="header">
         <td class="border textcenter"><h1>Index</h1></td>
-    </tr>
-    <tr>
-        <td class="border">
+    </section>
+    <section class="border">
+        <div class="div">
             <p>Welcome back, {{ g.user.username }}!</p>
             <p>Your visits this session: {{ visits_session }}</p>
             <p>Total visits: {{ visits_total }}</p>
-        </td>
-    </tr>
+        </div>
+    </section>
 
 {% endblock %}
