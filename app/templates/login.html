@@ -6,27 +6,29 @@
 	{% include "flash.html" %}
 	<section class="border">
 		<form class="half-left" method="post" name="login">
-            {{ form.hidden_tag() }}
+			{{ form.hidden_tag() }}
 			<div>
 				<div class="third-left text-right">
-                    Benutzername:
+					Benutzername:
 				</div>
 				<div class="third-right">
 					{{ form.username(class="entry") }}
 				</div>
+			</div>
+			<div>
 				<div class="third-left text-right">
-                    Passwort:
+					Passwort:
 				</div>
 				<div class="third-right">
 					{{ form.password(class="entry") }}<br>
-                    <input value="Einloggen" type="submit">
+					<input value="Einloggen" type="submit">
 				</div>
 			</div>
-        </form>
+		</form>
 		<div class="half-right">
-                        <p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
-                            spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
-                            beherschen kann.<br> </p>
+						<p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
+							spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
+							beherschen kann.<br> </p>
 		</div>
 	</section>
     <section class="text-center">

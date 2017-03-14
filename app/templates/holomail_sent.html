@@ -1,75 +1,71 @@
 {% extends "base.html" %}
 {% block content %}
+	<section class="header">
+		<h1>Holopost</h1>
+	</section>
 	{% include "flash.html" %}
-    <tr>
-        <td class="border textcenter"><h1>Holopost</h1></td>
-    </tr>
-    <tr class="border">
-    <td class="textcenter">
-        <a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
-        Postausgang&nbsp;&nbsp;
-        <a href="{{ url_for("holopost") }}">Posteingang</a>
-    </td>
-    </tr>
+	<section>
+		<div class="div text-center">
+			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost") }}">Posteingang</a>
+		</div>
+	</section>
+	<section class="border">
     {% if not mails.items %}
-        <tr>
-            <td class="border">
-                Du hast noch keine Holopost gesendet.
-            </td>
-        </tr>
+		<div class="div">
+            Du hast noch keine Holopost gesendet.
+		</div>
     {% else %}
-        <tr>
-            <td class="border">
-                <table class="mailtable" border="0" cellpadding="5" cellspacing="5">
-                    <tr>
-                        <td>
-                            Sender
-                        </td>
-                        <td>
-                            Empfänger
-                        </td>
-                        <td>
-                            Betreff
-                        </td>
-                        <td class="right">
-                            Zeit
-                        </td>
-                    </tr>
-                    {% for mail in mails.items %}
+		<div class="div">
+			<table class="mailtable" border="0" cellpadding="5" cellspacing="5">
+				<tr>
+					<td>
+						Sender
+					</td>
+					<td>
+						Empfänger
+					</td>
+					<td>
+						Betreff
+					</td>
+					<td class="text-right">
+						Zeit
+					</td>
+				</tr>
+				{% for mail in mails.items %}
 
-                        <tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'">
-                            <td>
-                                {{ mail.sender.username }}
-                            </td>
-                            <td>
-                                {{ mail.receiver.username }}
-                            </td>
-                            <td>
-                                {{ mail.subject }}
-                            </td>
-                            <td class="right">
-                                {{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
-                            </td>
-                        </tr>
+					<tr onclick="window.document.location='{{ url_for("holopost_detail", id=mail.id) }}'">
+						<td>
+							{{ mail.sender.username }}
+						</td>
+						<td>
+							{{ mail.receiver.username }}
+						</td>
+						<td>
+							{{ mail.subject }}
+						</td>
+						<td class="text-right">
+							{{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
+						</td>
+					</tr>
 
-                    {% endfor %}
-                </table>
-            </td>
-        </tr>
-        <tr>
-        <td class="textcenter">
-            {% if mails.has_prev %}
-                <a href="{{ url_for("holopost_sent", page=mails.prev_num) }}" > <- neuer </a>
-            {% else %}
-                <- neuer
-            {% endif %}
-            &nbsp;&nbsp;
-            {% if mails.has_next %}
-                <a href="{{ url_for("holopost_sent", page=mails.next_num) }}" > älter -> </a>
-            {% else %}
-                älter ->
-            {% endif %}
-        </td>
-        </tr>
+				{% endfor %}
+			</table>
+			<div class="div text-center">
+				{% if mails.has_prev %}
+					<a href="{{ url_for("holopost_sent", page=mails.prev_num) }}" > <- neuer </a>
+				{% else %}
+					<a class="hidden" > <- neuer </a>
+				{% endif %}
+				&nbsp;&nbsp;
+				{% if mails.has_next %}
+					<a href="{{ url_for("holopost_sent", page=mails.next_num) }}" > älter -> </a>
+				{% else %}
+					<a class="hidden" > älter -> </a>
+				{% endif %}
+			</div>
+		</div>
     {% endif %}
+	</section>
 {% endblock %}

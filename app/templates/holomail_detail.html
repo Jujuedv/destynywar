@@ -1,50 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
+    <section class="header">
+        <h1>Holopost</h1>
+    </section>
 	{% include "flash.html" %}
-    <tr>
-        <td class="border textcenter"><h1>Holopost</h1></td>
-    </tr>
-    <tr class="border">
-    <td class="textcenter">
-        <a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
-        <a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
-        <a href="{{ url_for("holopost") }}">Posteingang</a>
-    </td>
-    </tr>
-    <tr>
-        <td class="border">
-            <table border="0" cellpadding="5" cellspacing="5">
-                <tr>
-                    <td>
-                        Absender: {{ mail.sender.username }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Empfänger: {{ mail.receiver.username }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Datum: {{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Betreff: {{ mail.subject }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ mail.body }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ url_for("holopost_write", receiver=mail.sender.username) }}">Antworten</a>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+	<section>
+		<div class="div text-center">
+			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost") }}">Posteingang</a>
+		</div>
+	</section>
+	<section class="border">
+		<div class="div">
+			<div>
+				<div class="fith-left">
+                    Absender:
+				</div>
+				<div class="fith-right">
+					{{ mail.sender.username }}
+				</div>
+			</div>
+			<div>
+				<div class="fith-left">
+                    Empfänger:
+				</div>
+				<div class="fith-right">
+					{{ mail.receiver.username }}
+				</div>
+			</div>
+			<div>
+				<div class="fith-left">
+                    Datum:
+				</div>
+				<div class="fith-right">
+					{{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
+				</div>
+			</div>
+			<div>
+				<div class="fith-left">
+                    Betreff:
+				</div>
+				<div class="fith-right">
+					{{ mail.subject }}
+				</div>
+			</div>
+			<div class="div">
+                <p>{{ mail.body }}</p>
+			</div>
+			<div class="div">
+				<a href="{{ url_for("holopost_write", receiver=mail.sender.username) }}">Antworten</a>
+			</div>
+		</div>
+	</section>
 {% endblock %}
