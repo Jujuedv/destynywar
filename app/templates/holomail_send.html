@@ -16,6 +16,7 @@
 		<div class="div">
             <form method="post" name="holomail">
                 {{ form.hidden_tag() }}
+                {{ pagedown.include_pagedown() }}
 				<div>
 					<div class="fith-left {{ "error" if form.receiver.errors }}">
 						Empfänger:
@@ -37,16 +38,26 @@
 						Nachricht:
 					</div>
 					<div class="fith-right">
-						{{ form.body(cols=40, rows=10) }}
+						{{ form.body(rows=10, class="smalltext wide") }}
 					</div>
-				</div>
+				</div>       
+        <div>
+          <div class="fith-right smalltext" id="preview" style="display:none;">
+            {{ form.body(only_preview=True) }}
+          </div>
+        </div>
 				<div>
 					<div class="fith-right">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input value="Senden" type="submit">
+            <script>
+                function showhide(id) {
+                var e = document.getElementById(id);
+                e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+             }
+             </script>
+						{{ form.submit }}<input type="button" value="Vorschau" onclick="showhide('preview')">
 					</div>
 				</div>
 			</form>
 		</div>
 	</section>
-
 {% endblock %}
