@@ -8,25 +8,25 @@
         <form method="post" name="register">
 			{{ form.hidden_tag() }}
 			<div class="div">
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.username.errors }}">
 					Benutzername:
 				</div>
 				<div class="third-right">
 					{{ form.username(class="entry") }}
 				</div>
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.email.errors }}">
 					Email:
 				</div>
 				<div class="third-right">
 					{{ form.email(class="entry") }}
 				</div>
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.password.errors }}">
 					Passwort:
 				</div>
 				<div class="third-right">
 					{{ form.password(class="entry") }}
 				</div>
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.password_rep.errors }}">
 					Wiederholung:
 				</div>
 				<div class="third-right">

@@ -16,7 +16,7 @@
             <form method="post" name="holomail">
                 {{ form.hidden_tag() }}
 				<div>
-					<div class="fith-left">
+					<div class="fith-left {{ "error" if form.receiver.errors }}">
 						Empfänger:
 					</div>
 					<div class="fith-right">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<div>
-					<div class="fith-left">
+					<div class="fith-left {{ "error" if form.subject.errors }}">
 						Betreff:
 					</div>
 					<div class="fith-right">
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div>
-					<div class="fith-left">
+					<div class="fith-left {{ "error" if form.body.errors }}">
 						Nachricht:
 					</div>
 					<div class="fith-right">

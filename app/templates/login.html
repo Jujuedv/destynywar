@@ -8,7 +8,7 @@
 		<form class="half-left" method="post" name="login">
 			{{ form.hidden_tag() }}
 			<div>
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.username.errors }}">
 					Benutzername:
 				</div>
 				<div class="third-right">
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div>
-				<div class="third-left text-right">
+				<div class="third-left text-right {{ "error" if form.password.errors }}">
 					Passwort:
 				</div>
 				<div class="third-right">
