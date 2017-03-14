@@ -17,32 +17,32 @@
 				<div class="fith-left">
                     Absender:
 				</div>
-				<div class="fith-right">
-					{{ mail.sender.username }}
+				<div class="fith-right {{ "hidden" if mail.sender.username==null }}">
+					{{ mail.sender.username if mail.sender.username!=null else "1234" }}
 				</div>
 			</div>
 			<div>
 				<div class="fith-left">
                     Empfänger:
 				</div>
-				<div class="fith-right">
-					{{ mail.receiver.username }}
+				<div class="fith-right {{ "hidden" if mail.receiver.username==null }}">
+					{{ mail.receiver.username if mail.receiver.username!=null else "1234" }}
 				</div>
 			</div>
 			<div>
 				<div class="fith-left">
                     Datum:
 				</div>
-				<div class="fith-right">
-					{{ mail.timestamp.strftime("%H:%M %d.%m.%y") }}
+				<div class="fith-right {{ "hidden" if mail.timestamp==null }}">
+					{{ mail.timestamp.strftime("%H:%M %d.%m.%y") if mail.timestamp!=null else "1234" }}
 				</div>
 			</div>
 			<div>
 				<div class="fith-left">
                     Betreff:
 				</div>
-				<div class="fith-right">
-					{{ mail.subject }}
+				<div class="fith-right {{ "hidden" if mail.subject==null }}">
+					{{ mail.subject if mail.subject!=null else "1234" }}
 				</div>
 			</div>
 			<div class="div">
