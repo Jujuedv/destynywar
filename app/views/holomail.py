@@ -27,7 +27,7 @@ def holopost_sent(page=1):
 def holopost_detail(id):
     mail = Holomail.query.filter_by(id=id).first()
     if mail and g.user.allowed_to_read(mail):
-        if g.user.username==mail.receiver:
+        if g.user.username==mail.receiver.username:
             mail.read=True
         db.session.commit()
         return render_template("holomail_detail.html", title="Holopost", mail=mail)
