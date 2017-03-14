@@ -17,39 +17,31 @@ class User(db.Model):
         self.username = username
         self.email = email
         self.password = pbkdf2_sha256.using(rounds=8000, salt_size=10).hash(password)
-        self.allMailsRead()
 
     @property
     def is_authenticated(self):
-        self.allMailsRead()
         return True
 
     @property
     def is_active(self):
-        self.allMailsRead()
         return True
 
     @property
     def is_anonymous(self):
-        self.allMailsRead()
         return False
 
     def get_id(self):
-        self.allMailsRead()
         return str(self.id)
 
     def validate(self, password):
-        self.allMailsRead()
         return pbkdf2_sha256.verify(password, self.password)
 
     def allowed_to_read(self, mail):
-        self.allMailsRead()
         if mail.sender == self or mail.receiver == self:
             return True
         return False
 
     def __repr__(self):
-        self.allMailsRead()
         return "<User {}>".format(self.username)
 
     def all_mails_read(self):
