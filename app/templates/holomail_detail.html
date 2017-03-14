@@ -47,10 +47,11 @@
 				</div>
 			</div>
 			<div class="div">
-                <p>{{ mail.body }}</p>
+          {{ mail.body|markdown }}
 			</div>
 			<div class="div">
 				<a href="{{ url_for("holopost_write", receiver=mail.sender.username) }}">Antworten</a>
+        <a href="{{ url_for("holopost_delete", id=mail.id) }}">Löschen</a>
 			</div>
 		</div>
 	</section>
