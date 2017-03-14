@@ -1,4 +1,6 @@
 from app import db
+from flask import g
+from app.models.holomail import Holomail
 from passlib.hash import pbkdf2_sha256
 
 class User(db.Model):
@@ -47,3 +49,10 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User {}>".format(self.username)
+
+    def all_mails_read(self):
+        mails = self.mails_received.order_by(Holomail.timestamp.desc())
+        for i in mails:
+            if not i.read:
+                return False
+        return True

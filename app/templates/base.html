@@ -8,16 +8,14 @@
 		{% endif %}
 		<link rel="shortcut icon" href="{{ url_for("static", filename="images/logo.jpg") }}"/>
 		<link href="{{ url_for("static", filename="css/main.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/fonts.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/responsive.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/splitlayout.css") }}" rel="stylesheet">
 	</head>
 
-	<body>
-		<table border="0" cellpadding="5" cellspacing="10" class="main centered">
-			{% include "menu.html" %}
-
-			{% block content %}
-			{% endblock %}
-
-			{% include "flash.html" %}
-		</table>
+	<body class="screenwidth">
+		{% include "menu.html" %}
+		{% block content %}
+		{% endblock %}
 	</body>
 </html>

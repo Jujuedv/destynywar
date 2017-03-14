@@ -1,68 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-    <tr>
-        <td class="border textcenter"><h1>Holopost</h1></td>
-    </tr>
-    <tr class="border">
-    <td class="textcenter">
-        Holopost schreiben&nbsp;&nbsp;
-        <a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
-        <a href="{{ url_for("holopost") }}">Posteingang</a>
-    </td>
-    </tr>
-    <tr>
-        <td class="border">
-            <table border="0" cellpadding="5" cellspacing="5" class="wide">
-                <tr>
-                    <td class="top">
-                        <form class="kasten" method="post" name="holomail"><br>
-                            {{ form.hidden_tag() }}
-                            {{ pagedown.include_pagedown() }}
-                            <table border="0" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                <tr>
-                                    <td class="{{ "left error" if form.receiver.errors else "left" }}">&nbsp;&nbsp;&nbsp;Empfänger:&nbsp; </td>
-                                    <td>{{ form.receiver(size=20) }}&nbsp;&nbsp;&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.subject.errors else "left" }}">
-                                        &nbsp;&nbsp;&nbsp;Betreff:&nbsp; </td>
-                                    <td>{{ form.subject(size=20) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.body.errors else "left" }}">&nbsp;&nbsp;&nbsp;Nachricht:
-                                    </td>
-                                    <td class="wide">
-                                        {{ form.body(rows=10, only_input=True, class="smalltext wide") }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <div id="preview" class="smalltext" style="display:none;">
-                                            {{ form.body(only_preview=True) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <script>
-                                        function showhide(id) {
-                                        var e = document.getElementById(id);
-                                        e.style.display = (e.style.display == 'block') ? 'none' : 'block';
-                                     }
-                                     </script>
-                                    <td></td>
-                                    <td>{{ form.submit }}<input type="button" value="Vorschau" onclick="showhide('preview')"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
+	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
+	<section class="header">
+		<h1>Holopost Schreiben</h1>
+	</section>
+	{% include "flash.html" %}
+	<section>
+		<div class="div text-center">
+			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost") }}">Posteingang</a>
+		</div>
+	</section>
+	<section class="border">
+		<div class="div">
+            <form method="post" name="holomail">
+                {{ form.hidden_tag() }}
+                {{ pagedown.include_pagedown() }}
+				<div>
+					<div class="fith-left {{ "error" if form.receiver.errors }}">
+						Empfänger:
+					</div>
+					<div class="fith-right">
+						{{ form.receiver(size=20) }}
+					</div>
+				</div>
+				<div>
+					<div class="fith-left {{ "error" if form.subject.errors }}">
+						Betreff:
+					</div>
+					<div class="fith-right">
+						{{ form.subject(size=20) }}
+					</div>
+				</div>
+				<div>
+					<div class="fith-left {{ "error" if form.body.errors }}">
+						Nachricht:
+					</div>
+					<div class="fith-right">
+						{{ form.body(rows=10, class="smalltext wide") }}
+					</div>
+				</div>       
+        <div>
+          <div class="fith-right smalltext" id="preview" style="display:none;">
+            {{ form.body(only_preview=True) }}
+          </div>
+        </div>
+				<div>
+					<div class="fith-right">
+            <script>
+                function showhide(id) {
+                var e = document.getElementById(id);
+                e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+             }
+             </script>
+						{{ form.submit }}<input type="button" value="Vorschau" onclick="showhide('preview')">
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
 {% endblock %}

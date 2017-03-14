@@ -1,15 +1,31 @@
-<tr class="border">
-	<td>
-		<a href="{{ url_for("index") }}">Index</a>&nbsp;&nbsp;<a href="#">Impressum</a>&nbsp;&nbsp;<a href="#">Forum</a>&nbsp;&nbsp;<a href="#">Hilfe</a>
-        {% if g.user.is_authenticated %}
-            <div class="right">
-                {% if g.user.has_read_all_mails() %}
-                    <a href="{{ url_for("holopost") }}"><img class="mailimage" src="{{ url_for("static", filename="images/HolomailGelesen.png") }}"></a>
-                {% else %}
-                    <a href="{{ url_for("holopost") }}"><img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}"></a>
-                {% endif %}&nbsp;&nbsp;
-                <a href="{{ url_for("logout") }}">Logout</a>
-            </div>
-        {% endif %}
-	</td>
-</tr>
+<nav class="nav-border">
+	<div class="div">
+		<div class="inline">
+			<a href="{{ url_for("index") }}">Index</a>
+		</div>
+		<div class="inline">
+			<a href="#">Impressum</a><br>
+		</div>
+		<div class="inline">
+			<a href="#">Forum</a><br>
+		</div>
+		<div class="inline">
+			<a href="#">Hilfe</a><br>
+		</div>
+		{% if g.user.is_authenticated %}
+			<div class="inline">
+				<a href="{{ url_for("logout") }}">Logout</a>
+			</div>
+			<div class="inline">
+				<a href="{{ url_for("holopost") }}" style="text-decoration: none">
+					{% if g.user.all_mails_read() %}
+						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailGelesen.png") }}">
+					{% else %}
+						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}">
+					{% endif %}
+				</a>&nbsp
+				<a href="{{ url_for("holopost") }}">Holopost</a>
+			</div>
+		{% endif %}
+	</div>
+</nav>
