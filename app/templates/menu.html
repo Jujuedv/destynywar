@@ -17,7 +17,14 @@
 				<a href="{{ url_for("logout") }}">Logout</a>
 			</div>
 			<div class="inline">
-				<a href="{{ url_for("holopost") }}"><img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}"></a>&nbsp<a href="{{ url_for("holopost") }}">Holopost</a>
+				<a href="{{ url_for("holopost") }}">
+					{% if g.user.allMailsRead() %}
+						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailGelesen.png") }}" style="text-decoration: none">
+					{% else %}
+						<img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}" style="text-decoration: none">
+					{% endif %}
+				</a>&nbsp
+				<a href="{{ url_for("holopost") }}">Holopost</a>
 			</div>
 		{% endif %}
 	</div>
