@@ -1,0 +1,70 @@
+* {
+    font-size: 5mm;
+}
+
+body {
+    font-family: Arial;
+    color: rgb(255, 255, 255);
+}
+
+h1 {
+    font-size: 18mm;
+    margin: auto;
+    height: 103px;
+}
+
+h2 {
+    font-size: 10mm;
+}
+
+h3 {
+    font-size: 9mm;
+}
+
+h4 {
+    font-size: 8mm;
+}
+
+h5 {
+    font-size: 7mm;
+}
+
+h6 {
+    font-size: 6mm;
+}
+
+h7 {
+    font-size: 5mm;
+}
+
+h8 {
+    font-size: 4mm;
+}
+
+h9 {
+    font-size: 3mm;
+}
+
+a {
+    color: #00B700;
+}
+
+a:visited {
+    color: #00B700;
+}
+
+a:hover {
+    color: #00E000;
+}
+
+a:active {
+    color: #00FF00;
+}
+
+.error{
+    color: red;
+}
+
+.hidden {
+	visibility: hidden;
+}
