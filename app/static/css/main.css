@@ -4,6 +4,70 @@ body {
     background: #2C2C2C url(/static/images/star_start.png) repeat;
 }
 
+* {
+    font-size: 5mm;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media screen and (min-width:1000px){
+	nav{
+		float: left;
+		width: 200px;
+	}
+	section{
+		margin-left: 200px;
+	}
+	.screenwidth{
+		width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media screen and (max-width:999px){
+	nav{
+		display: inline;
+	}
+	section{
+		
+	}
+	.screenwidth{
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.half-left{
+	float: left;
+	width: 50%;
+}
+
+.half-right{
+	margin-left: 52%;
+	width: 48%;
+}
+
+.third-left{
+	float: left;
+	width: 33%;
+}
+
+.third-right{
+	margin-left: 35%;
+	width: 65%;
+}
+
+.text-right{
+	text-align:right;
+}
+
+.entry{
+	max-width:100%;
+}
+
 a {
     color: #00B700;
 }
@@ -103,13 +167,6 @@ a:active {
 	visibility: hidden;
 }
 
-* {
-    font-size: 5mm;
-	-webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 h1 {
     font-size: 18mm;
     margin: auto;
@@ -168,7 +225,7 @@ h9 {
 }
 
 .mailimage {
-    height: 6mm;
+    height: 5.5mm;
     max-width: auto;
     vertical-align: middle;
 }

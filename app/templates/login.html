@@ -1,49 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-    <tr>
-        <td class="border textcenter"><img src="static/images/cooltext2.png"/></td>
-    </tr>
-    <tr>
-        <td class="border">
-            <table border="0" cellpadding="5" cellspacing="5">
-                <tr>
-                    <td class="top">
-                        <form class="kasten" method="post" name="login"><br>
+	<section>
+		<img src="static/images/cooltext2.png"/>
+	</section>
+	<section>
+		<div class="half-left">
                             {{ form.hidden_tag() }}
-                            <table border="0" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                <tr>
-                                    <td class="{{ "left error" if form.username.errors else "left" }}">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
-                                    <td>{{ form.username(size=20, class="border") }}&nbsp;&nbsp;&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.password.errors else "left" }}">&nbsp;&nbsp;&nbsp;Passwort:</td>
-                                    <td>{{ form.password(size=20, class="border") }}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input value="Einloggen" type="submit"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </form>
-                    </td>
-                    <td class="top">
-                        <p id="dw_desc" class="kasten top"><br>Destyny War ist ein Browsergame, das in der Zukunft
+			<div>
+				<div class="third-left text-right">
+                    Benutzername:<br>Passwort:
+				</div>
+				<div class="third-right">
+					{{ form.username(class="entry") }}<br>
+					{{ form.password(class="entry") }}<br>
+                    <input value="Einloggen" type="submit">
+				</div>
+			</div>
+        </div>
+		<div class="half-right">
+                        <p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
                             spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
                             beherschen kann.<br> </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:center;">
+		</div>
+	</section>
+    <section>
                         <a href="{{ url_for("register") }}"><img style="border-style: none;"
                                                                  src="static/images/button.png"
                                                                  alt="Jetzt mitspielen."/></a>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+	</section>
+                    
 
 {% endblock %}

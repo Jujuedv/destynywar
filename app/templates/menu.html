@@ -1,11 +1,13 @@
-<tr class="border">
-	<td>
-		<a href="{{ url_for("index") }}">Index</a>&nbsp;&nbsp;<a href="#">Impressum</a>&nbsp;&nbsp;<a href="#">Forum</a>&nbsp;&nbsp;<a href="#">Hilfe</a>
-        {% if g.user.is_authenticated %}
-            <div class="right">
-                <a href="{{ url_for("holopost") }}"><img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}"></a>&nbsp;&nbsp;
-                <a href="{{ url_for("logout") }}">Logout</a>
-            </div>
-        {% endif %}
-	</td>
-</tr>
+<nav>
+	<br><br>
+	<a href="{{ url_for("index") }}">Index</a><br>
+	<a href="#">Impressum</a><br>
+	<a href="#">Forum</a><br>
+	<a href="#">Hilfe</a><br>
+	{% if g.user.is_authenticated %}
+		<div>
+			<a href="{{ url_for("holopost") }}"><img class="mailimage" src="{{ url_for("static", filename="images/HolomailNeu.png") }}"></a>&nbsp;&nbsp;
+			<a href="{{ url_for("logout") }}">Logout</a>
+		</div>
+	{% endif %}
+</nav>
