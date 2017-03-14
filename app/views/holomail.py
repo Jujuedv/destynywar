@@ -45,7 +45,7 @@ def holopost_write(receiver=None):
     if form.validate_on_submit():
         receiver = User.query.filter_by(username=form.receiver.data).first()
         mail = Holomail(receiver=receiver, sender=g.user, timestamp=datetime.now(), subject=form.subject.data,
-                        body=form.body.data, read=False)
+                        body="\n"+form.body.data, read=False)
         db.session.add(mail)
         db.session.commit()
         flash("Holopost gesendet!")
