@@ -17,11 +17,24 @@ body {
 		width: 180px;
 		margin-right: 20px;
 		margin-top: 70px;
+		height:50%
 	}
+	
 	section{
 		margin-left: 200px;
 		margin-top: 1em;
 	}
+	
+	.nav-border{
+		border-style: solid;
+		border-width: 3px;
+		border-color: #00B700;
+		background-color: #111111;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+	
 	.screenwidth{
 		width: 1000px;
 		margin-left: auto;
@@ -33,13 +46,24 @@ body {
 	nav{
 		display: inline;
 	}
+	
 	section{
+		margin:1em;
+	}
+	
+	.nav-border{
 		
 	}
+	
 	.screenwidth{
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.inline{
+		display: inline-block;
+		margin-right:1em;
 	}
 }
 
@@ -48,11 +72,12 @@ body {
 	width: 50%;
 	margin-top: 1em;
 	margin-left: 1em;
+	margin-right: 1em;
 }
 
 .half-right{
-	margin-left: 52%;
-	width: 48%;
+	margin-left: 50%;
+	width: 50%;
 	margin-top: 1em;
 	margin-right: 1em;
 }
@@ -77,6 +102,7 @@ body {
 
 .entry{
 	max-width:100%;
+	margin-right:2px;
 }
 
 .div{
