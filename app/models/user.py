@@ -39,5 +39,11 @@ class User(db.Model):
             return True
         return False
 
+    def has_read_all_mails(self):
+        for mail in self.mails_received:
+            if not mail.read:
+                return False
+        return True
+
     def __repr__(self):
         return "<User {}>".format(self.username)

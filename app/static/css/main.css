@@ -20,8 +20,25 @@ a:active {
     color: #00E000;
 }
 
+.smalltext {
+    font-size: 12px !important;
+}
+
+
+
+.wide {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .mailTable tr:not(:first-child):hover{
     background-color: #005000;
+}
+
+.highlight {
+    background-color: #222222;
 }
 
 .mailTable tr{
@@ -103,13 +120,6 @@ a:active {
 	visibility: hidden;
 }
 
-* {
-    font-size: 5mm;
-	-webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 h1 {
     font-size: 18mm;
     margin: auto;
@@ -169,11 +179,17 @@ h9 {
 
 .mailimage {
     height: 5.5mm;
-    max-width: auto;
     vertical-align: middle;
 }
 
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+* {
+    font-size: 5mm;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
