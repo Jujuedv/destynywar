@@ -1,28 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<tr>
-	<td>
-		<div class="border textcenter">
-			<h1>Seite nicht gefunden!</h1>
+	{% include "flash.html" %}
+	<section class="header">
+		<h1>Seite nicht gefunden!</h1>
+	</section>
+	<section class="border">
+		<div class="div">
+			<p>Diese Seite ist nicht vorhanden.</p>
+			<a href="{{ url_for("index") }}">Weg von hier!</a>
 		</div>
-	</td>
-</tr>
-<tr>
-	<td>
-		<div class="border">
-			<table border="0" cellpadding="5" cellspacing="10" class="main centered_layer2">
-				<tr>
-					<td>
-						<p>Diese Seite ist nicht vorhanden.</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="{{ url_for("index") }}">Weg von hier!</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</td>
-</tr>
+	</section>
 {% endblock %}

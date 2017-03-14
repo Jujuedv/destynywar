@@ -10,14 +10,9 @@
 		<link href="{{ url_for("static", filename="css/main.css") }}" rel="stylesheet">
 	</head>
 
-	<body>
-		<table border="0" cellpadding="5" cellspacing="10" class="main centered">
-			{% include "menu.html" %}
-
-			{% block content %}
-			{% endblock %}
-
-			{% include "flash.html" %}
-		</table>
+	<body class="screenwidth">
+		{% include "menu.html" %}
+		{% block content %}
+		{% endblock %}
 	</body>
 </html>

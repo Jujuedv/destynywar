@@ -1,59 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-    <tr>
-        <td class="border textcenter"><h1>Registrierung</h1></td>
-    </tr>
-    <tr>
-        <td class="border">
-            <table border="0" cellpadding="5" cellspacing="5">
-                <tr>
-                    <td class="top">
-                        <form class="kasten" method="post" name="register"><br>
-                            {{ form.hidden_tag() }}
-                            <table border="0" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                <tr>
-                                    <td class="{{ "left error" if form.username.errors else "left" }}">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
-                                    <td>{{ form.username(size=20) }}&nbsp;&nbsp;&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.email.errors else "left" }}">
-                                        &nbsp;&nbsp;&nbsp;Email:&nbsp; </td>
-                                    <td>{{ form.email(size=20) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.password.errors else "left" }}">&nbsp;&nbsp;&nbsp;Passwort:
-                                    </td>
-                                    <td>{{ form.password(size=20) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="{{ "left error" if form.password_rep.errors else "left" }}">&nbsp;&nbsp;&nbsp;Wiederholung:&nbsp;&nbsp;</td>
-                                    <td>{{ form.password_rep(size=20) }}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input value="Registrieren" type="submit"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </form>
-                    </td>
-                    <td class="top">
-                        <p id="dw_desc" class="kasten"><br>Destyny War ist ein Browsergame, das in der Zukunft
-                            spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
-                            beherschen kann.<br> </p>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="border">
-            Du hast schon einen Benutzernamen? Melde dich einfach auf der <a
-                href="{{ url_for("login") }}">Startseite</a>
-            an.
-        </td>
-    </tr>
-
+	<section class="header">
+		<h1>Registrierung</h1>
+	</section>
+	{% include "flash.html" %}
+	<section class="border">
+        <form method="post" name="register">
+			{{ form.hidden_tag() }}
+			<div class="div">
+				<div class="third-left text-right {{ "error" if form.username.errors }}">
+					Benutzername:
+				</div>
+				<div class="third-right">
+					{{ form.username(class="entry") }}
+				</div>
+				<div class="third-left text-right {{ "error" if form.email.errors }}">
+					Email:
+				</div>
+				<div class="third-right">
+					{{ form.email(class="entry") }}
+				</div>
+				<div class="third-left text-right {{ "error" if form.password.errors }}">
+					Passwort:
+				</div>
+				<div class="third-right">
+					{{ form.password(class="entry") }}
+				</div>
+				<div class="third-left text-right {{ "error" if form.password_rep.errors }}">
+					Wiederholung:
+				</div>
+				<div class="third-right">
+					{{ form.password_rep(class="entry") }}<br>
+					<input value="Registrieren" type="submit">
+				</div>
+			</div>
+        </form>
+	</section>
+	<section>
+        Du hast schon einen Benutzernamen? Melde dich einfach auf der <a href="{{ url_for("login") }}">Startseite</a> an.
+	</section>
 {% endblock %}

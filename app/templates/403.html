@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-    <tr><td class="border textcenter"><h1>VERBOTEN!</h1></td></tr>
-    <tr><td><p>Du hast nicht die Berechtigung, um diese Seite einzusehen.</p>
-    <a href="{{ url_for("index") }}">Weg von hier!</a></td></tr>
+	{% include "flash.html" %}
+	<section class="header">
+		<h1>VERBOTEN!</h1>
+	</section>
+	<section class="border">
+		<div class="div">
+			<p>Du hast nicht die Berechtigung, um diese Seite einzusehen.</p>
+			<a href="{{ url_for("index") }}">Weg von hier!</a>
+		</div>
+	</section>
 {% endblock %}
