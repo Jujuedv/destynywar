@@ -1,0 +1,56 @@
+@media screen and (min-width:1000px){
+	nav{
+		float: left;
+		width: 180px;
+		margin-right: 20px;
+		margin-top: 8%;
+		margin-bottom: 12%;
+		height:80%
+	}
+	
+	section{
+		margin-left: 200px;
+		margin-top: 1em;
+	}
+	
+	.nav-border{
+		border-style: solid;
+		border-width: 3px;
+		border-color: #00B700;
+		background-color: #111111;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+	
+	.screenwidth{
+		width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media screen and (max-width:999px){
+	nav{
+		display: inline;
+	}
+	
+	section{
+		margin:1em;
+	}
+	
+	.nav-border{
+		
+	}
+	
+	.screenwidth{
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.inline{
+		display: inline-block;
+		margin-right:1em;
+	}
+}
