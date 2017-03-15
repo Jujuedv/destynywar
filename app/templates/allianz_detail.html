@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
+    <section class="header">
+        <h1>Allianz</h1>
+    </section>
+	{% include "flash.html" %}
+	<section class="border">
+		<div class="div">
+			<div>
+				<div class="fith-left">
+                    Name:
+				</div>
+				<div class="fith-right {{ "hidden" if allianz.name==null }}">
+					{{ allianz.name if allianz.name!=null else "1234" }}
+				</div>
+			</div>
+			<div>
+				<div class="fith-left">
+                    Gründer:
+				</div>
+				<div class="fith-right {{ "hidden" if allianz.owner.username==null }}">
+					{{ allianz.owner.username if allianz.owner.username!=null else "1234" }}
+				</div>
+			</div>
+			<div>
+				<div class="fith-left">
+                    Beschreibung:
+				</div>
+			</div>
+			<div class="div">
+                {{ allianz.description }}
+			</div>
+			<div>
+				<div class="fith-left">
+                    Mitglieder:
+				</div>
+				<div class="fith-right">
+					{% for member in allianz.members %}
+                        {{ member.username }}
+                    {% endfor %}
+				</div>
+			</div>
+			<div class="div">
+                <a href="{{ url_for("allianz_invite", id=allianz.id) }}">Allianz&nbspeinladen</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}
