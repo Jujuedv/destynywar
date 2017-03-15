@@ -14,6 +14,12 @@
 		</div>
 		{% if g.user.is_authenticated %}
 			<div class="inline">
+			    <a href="{{ url_for("allianz") }}">Allianz</a>
+			</div>
+			<div class="inline">
+			    <a href="{{ url_for("allianz_new") }}">Allianz&nbsperstellen</a>
+			</div>
+			<div class="inline">
 				<a href="{{ url_for("logout") }}">Logout</a>
 			</div>
 			<div class="inline">

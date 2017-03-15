@@ -1,6 +1,7 @@
 from app import db
 from flask import g
 from app.models.holomail import Holomail
+from app.models.allianz import Allianz, allianz_association_table
 from passlib.hash import pbkdf2_sha256
 
 class User(db.Model):
@@ -9,7 +10,9 @@ class User(db.Model):
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
     planets = db.relationship('Planet', back_populates='owner')
+    allianz_member = db.relationship("Allianz", back_populates="members", lazy='dynamic', secondary=allianz_association_table)
 
+    allianz_owner = db.relationship("Allianz", backref="owner", lazy="dynamic", foreign_keys="Allianz.owner_id")
     mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
     mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic", foreign_keys="Holomail.receiver_id")
 
