@@ -5,7 +5,7 @@
 	</section>
 	{% include "flash.html" %}
 	<section class="border">
-		<form class="half-left" method="post" name="login">
+		<form class="half-left div" method="post" name="login">
 			{{ form.hidden_tag() }}
 			<div>
 				<div class="third-left text-right {{ "error" if form.username.errors }}">
@@ -20,7 +20,11 @@
 					Passwort:
 				</div>
 				<div class="third-right">
-					{{ form.password(class="entry") }}<br>
+					{{ form.password(class="entry") }}
+				</div>
+			</div>
+			<div class="third-right">
+				<div class="without-left">
 					<input value="Einloggen" type="submit">
 				</div>
 			</div>
