@@ -10,8 +10,8 @@ from app.forms.allianzinviteform import AllianzInviteForm
 @app.route("/allianz")
 @login_required
 def allianz():
-    allianzen = Allianz.query.join(Allianz.members).filter_by(id=g.user.id).paginate(1, 10000000000, False)
-    if allianzen.pages==0:
+    allianzen = Allianz.query.join(Allianz.members).filter_by(id=g.user.id).all()
+    if allianzen==None:
         allianzen=None
     return render_template("allianz.html", title="Allianz", allianzen=allianzen)
 
@@ -19,10 +19,11 @@ def allianz():
 @login_required
 def allianz_detail(id):
     allianz = Allianz.query.filter_by(id=id).first()
-    if allianz and allianz.owner_id==g.user.id:
-        return render_template("allianz_detail.html", title="Allianz ansehen", allianz=allianz)
-    else:
-        return abort(403)
+    members = User.query.join(User.allianz_member).filter_by(id=allianz.id).all()
+    for i in members:
+        if i.id==g.user.id and allianz:
+            return render_template("allianz_detail.html", title="Allianz ansehen", allianz=allianz)
+    return abort(403)
 
 @app.route("/allianz/invite/<int:id>", methods=["GET", "POST"])
 @login_required

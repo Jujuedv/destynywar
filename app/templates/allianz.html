@@ -23,7 +23,7 @@
                             Gründer
                         </td>
                     </tr>
-                    {% for allianz in allianzen.items %}
+                    {% for allianz in allianzen %}
                         <tr onclick="window.document.location='{{ url_for("allianz_detail", id=allianz.id) }}'">
                             <td>
                                 {{ allianz.name }}
