@@ -5,31 +5,6 @@
     </section>
 	{% include "flash.html" %}
     <section class="border">
-		<div class="div">
-            <form method="post" name="alliance">
-                {{ form.hidden_tag() }}
-				<div>
-					<div class="fith-left {{ "error" if form.name.errors }}">
-						Name der Allianz:
-					</div>
-					<div class="fith-right">
-						{{ form.name(size=20) }}
-					</div>
-				</div>
-				<div>
-					<div class="fith-left {{ "error" if form.description.errors }}">
-						Beschreibung:
-					</div>
-					<div class="fith-right">
-						{{ form.description(rows=10, cols=40, only_input=True) }}
-					</div>
-				</div>
-				<div class="fith-right">
-					<div class="without-left">
-						{{ form.submit }}
-					</div>
-				</div>
-			</form>
-		</div>
+		{% include "form.html" %}
 	</section>
 {% endblock %}
