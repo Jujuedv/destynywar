@@ -12,9 +12,9 @@ def validate_receiver(form, field):
 
 class MailForm(FlaskForm):
 
-    receiver = StringField("Empfänger:", validators=[DataRequired(), validate_receiver])
-    subject = StringField("Betreff:", validators=[DataRequired()])
-    body = TextAreaField("Nachricht:")
+    receiver = StringField("Empfänger", validators=[DataRequired(), validate_receiver])
+    subject = StringField("Betreff", validators=[DataRequired()])
+    body = TextAreaField("Nachricht")
     submit = SubmitField("Senden", description="Senden!")
 
     def __init__(self, *args, **kwargs):
