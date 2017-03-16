@@ -15,6 +15,9 @@
 
 	<body class="screenwidth">
 		{% include "menu.html" %}
+		{% block header %}
+		{% endblock %}
+	    {% include "flash.html" %}
 		{% block content %}
 		{% endblock %}
 	</body>

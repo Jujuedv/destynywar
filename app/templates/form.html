@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block content %}
+{% block header %}
     {{ form.header|safe }}
-	{% include "flash.html" %}
+{% endblock %}
+{% block content %}
     {{ form.header2|safe }}
 	<section class="border">
         <form method="post" name="register">
