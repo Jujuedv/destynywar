@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% block content %}
+{% block header %}
 	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
 	<section class="header">
 		<h1>Holoposteingang</h1>
 	</section>
-	{% include "flash.html" %}
+{% endblock %}
+{% block content %}
 	<section>
 		<div class="div text-center">
 			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;

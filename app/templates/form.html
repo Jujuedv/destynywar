@@ -1,0 +1,19 @@
+<form method="post" name="register">
+    {{ form.hidden_tag() }}
+    <div class="div">
+        {% for field in form %}
+            {% if field.type not in["CSRFTokenField", "HiddenField"] %}
+                <div class="quarter-left text-right {{ "error" if field.errors }}">
+                    {% if field.type == "SubmitField" %}
+                        &nbsp;
+                    {% else %}
+                        {{ field.label }}:
+                    {% endif %}
+                </div>
+                <div class="quarter-right">
+                    {{ field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</form>

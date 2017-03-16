@@ -63,4 +63,5 @@ def holopost_write(receiver=None):
         db.session.commit()
         flash("Holopost gesendet!")
         return redirect(url_for("holopost"))
-    return render_template("holomail_send.html", title="Holomail", form=form)
+    return render_template("holomail_send.html", title="Holomail Senden", form=form)
+

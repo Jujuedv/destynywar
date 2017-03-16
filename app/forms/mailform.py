@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError
-from flask_pagedown.fields import PageDownField
 from app.models.user import User
 
 
@@ -13,10 +12,10 @@ def validate_receiver(form, field):
 
 class MailForm(FlaskForm):
 
-    receiver = StringField("Receiver", validators=[DataRequired(), validate_receiver])
-    subject = StringField("Subject", validators=[DataRequired()])
-    body = PageDownField("Body")
-    submit = SubmitField("Senden")
+    receiver = StringField("Empfänger", validators=[DataRequired(), validate_receiver])
+    subject = StringField("Betreff", validators=[DataRequired()])
+    body = TextAreaField("Nachricht")
+    submit = SubmitField("Senden", description="Senden!")
 
     def __init__(self, *args, **kwargs):
         FlaskForm.__init__(self, *args, **kwargs)

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% block content %}
+{% block header %}
 	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
-	<section class="header">
-		<h1>Holopost Schreiben</h1>
-	</section>
-	{% include "flash.html" %}
+    <section class="header">
+        <h1>Holopost senden</h1>
+    </section>
+{% endblock %}
+{% block content %}
 	<section>
 		<div class="div text-center">
 			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
@@ -13,51 +14,6 @@
 		</div>
 	</section>
 	<section class="border">
-		<div class="div">
-            <form method="post" name="holomail">
-                {{ form.hidden_tag() }}
-                {{ pagedown.include_pagedown() }}
-				<div>
-					<div class="fith-left {{ "error" if form.receiver.errors }}">
-						Empfänger:
-					</div>
-					<div class="fith-right">
-						{{ form.receiver(size=20) }}
-					</div>
-				</div>
-				<div>
-					<div class="fith-left {{ "error" if form.subject.errors }}">
-						Betreff:
-					</div>
-					<div class="fith-right">
-						{{ form.subject(size=20) }}
-					</div>
-				</div>
-				<div>
-					<div class="fith-left {{ "error" if form.body.errors }}">
-						Nachricht:
-					</div>
-					<div class="fith-right">
-						{{ form.body(rows=10, cols=40, only_input=True) }}
-					</div>
-				</div>       
-				<div class="fith-right">
-				  <div class="without-left" id="preview" style="display:none;">
-					{{ form.body(only_preview=True) }}
-				  </div>
-				</div>
-				<div class="fith-right">
-					<div class="without-left">
-						<script>
-							function showhide(id) {
-							var e = document.getElementById(id);
-							e.style.display = (e.style.display == 'block') ? 'none' : 'block';
-						 }
-						 </script>
-						{{ form.submit }}<input type="button" value="Vorschau" onclick="showhide('preview')">
-					</div>
-				</div>
-			</form>
-		</div>
+		{% include "form.html" %}
 	</section>
 {% endblock %}
