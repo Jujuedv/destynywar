@@ -3,4 +3,4 @@ from app.views.login import *
 from app.views.register import *
 from app.views.holomail import *
 from app.views.errors import *
-from app.views.allianz import *
+from app.views.alliance import *

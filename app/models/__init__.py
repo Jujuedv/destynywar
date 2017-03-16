@@ -3,4 +3,4 @@ from app.models.user import *
 from app.models.globalvars import *
 from app.models.planet import *
 from app.models.holomail import *
-from app.models.allianz import *
+from app.models.alliance import *
