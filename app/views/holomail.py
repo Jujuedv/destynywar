@@ -55,8 +55,6 @@ def holopost_write(receiver=None):
     else:
         form = MailForm()
 
-    form.header2=form.header2_1+url_for("holopost_write")+form.header2_2+url_for("holopost_sent")+form.header2_3+url_for("holopost")+form.header2_4
-
     if form.validate_on_submit():
         receiver = User.query.filter_by(username=form.receiver.data).first()
         mail = Holomail(receiver=receiver, sender=g.user, timestamp=datetime.now(), subject=form.subject.data,
@@ -65,5 +63,5 @@ def holopost_write(receiver=None):
         db.session.commit()
         flash("Holopost gesendet!")
         return redirect(url_for("holopost"))
-    return render_template("form.html", title="Holomail", form=form)
+    return render_template("holomail_send.html", title="Holomail Senden", form=form)
 

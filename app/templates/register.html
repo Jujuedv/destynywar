@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block header %}
+    <section class="text-center">
+        <h1>Registrierung</h1>
+    </section>
+{% endblock %}
+{% block content %}
+    <section class="border">
+        <div class="half-left">
+            {% include "form.html" %}
+        </div>
+        <div class="half-right">
+            <p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
+                spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
+                beherschen kann.<br></p>
+        </div>
+    </section>
+    <section class="text-center">
+        Du hast schon einen Benutzernamen? Melde dich einfach auf der <a href="{{ url_for("login") }}">Startseite</a>
+        an.
+    </section>
+{% endblock %}

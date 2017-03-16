@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block header %}
+	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
+    <section class="header">
+        <h1>Holopost senden</h1>
+    </section>
+{% endblock %}
+{% block content %}
+	<section>
+		<div class="div text-center">
+			<a href="{{ url_for("holopost_write") }}">Holopost schreiben</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost_sent") }}">Postausgang</a>&nbsp;&nbsp;
+			<a href="{{ url_for("holopost") }}">Posteingang</a>
+		</div>
+	</section>
+	<section class="border">
+		{% include "form.html" %}
+	</section>
+{% endblock %}
