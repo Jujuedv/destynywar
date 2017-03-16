@@ -8,17 +8,6 @@
     font-size: 12px !important;
 }
 
-.wide {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.highlight {
-    background-color: #222222;
-}
-
 body {
     background: #2C2C2C url(/static/images/star_start.png) repeat;
 }

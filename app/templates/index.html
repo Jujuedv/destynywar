@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block content %}
+{% block header %}
     <section class="header">
         <td class="border textcenter"><h1>Index</h1></td>
     </section>
-	{% include "flash.html" %}
+{% endblock %}
+{% block content %}
     <section class="border">
         <div class="div">
             <p>Welcome back, {{ g.user.username }}!</p>

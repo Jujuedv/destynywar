@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block header %}
+    {{ form.header|safe }}
+{% endblock %}
+{% block content %}
+    {{ form.header2|safe }}
+	<section class="border">
+        <form method="post" name="register">
+			{{ form.hidden_tag() }}
+            {{ form.form_include|safe }}
+			<div class="div">
+                {% for field in form %}
+                    {% if field.type == "StringField" or field.type == "PasswordField" %}
+                        <div class="quarter-left text-right {{ "error" if field.errors }}">
+                            {{ field.label }}
+                        </div>
+                        <div class="quarter-right">
+                            {{ field }}
+                        </div>
+                    {% elif field.type == "SubmitField" %}
+                        <div class="quarter-right">
+                            <div class="without-left">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% elif field.type == "TextAreaField" %}
+                        <div>
+                            <div class="quarter-left text-right {{ "error" if field.errors }}">
+                                {{ field.label }}
+                            </div>
+                            <div class="without-left">
+                                <div class="quarter-right">
+                                    <script src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js"></script>
+                                    {{ field }}
+                                    <script>CKEDITOR.replace('{{ field.id }}', {height:"500px"})</script>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+			</div>
+        </form>
+	</section>
+	{{ form.footer|safe }}
+{% endblock %}
