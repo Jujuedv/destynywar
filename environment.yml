@@ -16,6 +16,7 @@ dependencies:
 - pip:
   - decorator==4.0.11
   - flask-login==0.4.0
+  - flask-socketio==2.8.5
   - flask-sqlalchemy==2.2
   - flask-wtf==0.14.2
   - markdown==2.6.8
