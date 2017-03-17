@@ -1,6 +1,7 @@
 from app import db
 
 class Holomail(db.Model):
+    __tablename__ = "holomail"
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     receiver_id = db.Column(db.Integer, db.ForeignKey("user.id"))

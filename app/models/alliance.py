@@ -6,11 +6,13 @@ alliance_association_table = db.Table('alliance_association', db.Model.metadata,
                                      )
 
 class Alliance(db.Model):
+    __tablename__ = "alliance"
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     name = db.Column(db.String(256))
     description = db.Column(db.String(4096))
 
+    members = db.relationship("User", backref="alliance", lazy='dynamic', foreign_keys="User.id")
     members = db.relationship("User", back_populates="alliance_member", lazy='dynamic', secondary=alliance_association_table)
 
     def __repr__(self):

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block content %}
+{% block header %}
     <section class="header">
         <h1>Allianz Erstellen</h1>
     </section>
-	{% include "flash.html" %}
+{% endblock %}
+{% block content %}
     <section class="border">
 		{% include "form.html" %}
 	</section>

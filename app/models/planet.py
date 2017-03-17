@@ -8,6 +8,7 @@ from app import db
 from app.models import Globalvars
 
 class Planet(db.Model):
+    __tablename__ = "planet"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     points = db.Column(db.Integer, default=0)  # TODO what are the actual starting points??
