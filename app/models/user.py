@@ -1,7 +1,9 @@
-from app import db
-from flask import g
-from app.models.holomail import Holomail
 from passlib.hash import pbkdf2_sha256
+from sqlalchemy.exc import IntegrityError
+
+from app import db
+from app.models.holomail import Holomail
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,7 +13,8 @@ class User(db.Model):
     planets = db.relationship('Planet', back_populates='owner')
 
     mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
-    mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic", foreign_keys="Holomail.receiver_id")
+    mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic",
+                                     foreign_keys="Holomail.receiver_id")
 
     def __init__(self, username, email, password):
         self.username = username
@@ -56,3 +59,17 @@ class User(db.Model):
             if not i.read:
                 return False
         return True
+
+    @staticmethod
+    def from_username(username):
+        return User.query.filter_by(username=username).first()
+
+    @staticmethod
+    def create_user(username, email, password):
+        try:
+            user = User(username, email, password)
+            db.session.add(user)
+            db.session.commit()
+            return True
+        except IntegrityError:
+            return False
