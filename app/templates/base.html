@@ -21,4 +21,10 @@
 		{% block content %}
 		{% endblock %}
 	</body>
+
+    <footer>
+        {% if g.user.is_authenticated and g.user.wants_chat %}
+        {% include "chat.html" %}
+        {% endif %}
+    </footer>
 </html>
