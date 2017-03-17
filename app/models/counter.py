@@ -1,7 +1,6 @@
 from app import db
 
 class Counter(db.Model):
-    __tablename__ = "counter"
     id = db.Column(db.String(64), primary_key=True)
     count = db.Column(db.Integer)
 

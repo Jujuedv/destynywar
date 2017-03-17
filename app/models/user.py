@@ -5,13 +5,12 @@ from app.models.alliance import Alliance, alliance_association_table
 from passlib.hash import pbkdf2_sha256
 
 class User(db.Model):
-    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
     planets = db.relationship('Planet', back_populates='owner')
-    alliance = db.relationship("Alliance", back_populates="members", lazy='dynamic')
+    alliance_member = db.relationship("Alliance", back_populates="members", lazy='dynamic', secondary=alliance_association_table)
 
     alliance_owner = db.relationship("Alliance", backref="owner", lazy="dynamic", foreign_keys="Alliance.owner_id")
     mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")

@@ -1,7 +1,6 @@
 from app import db
 
 class Globalvars(db.Model):
-    __tablename__ = "globalvars"
     id = db.Column(db.Integer, primary_key=True)
 
     planet_rot = db.Column(db.Float, default=0)
