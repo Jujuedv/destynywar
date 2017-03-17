@@ -8,7 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
-    chat = db.Column(db.Boolean(), default=True)
+    chat = db.Column(db.Boolean, default=True)
     planets = db.relationship('Planet', back_populates='owner')
 
     mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
@@ -33,7 +33,7 @@ class User(db.Model):
 
     @property
     def wants_chat(self):
-        return self.chat
+        return True
 
     def get_id(self):
         return str(self.id)

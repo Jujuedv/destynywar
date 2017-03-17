@@ -23,8 +23,10 @@
 	</body>
 
     <footer>
-        {% if g.user.is_authenticated and g.user.wants_chat %}
-        {% include "chat.html" %}
+        {% if g.user.is_authenticated %}
+            {% if g.user.wants_chat %}
+                {% include "chat.html" %}
+            {% endif %}
         {% endif %}
     </footer>
 </html>
