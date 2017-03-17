@@ -72,7 +72,7 @@ class Planet(db.Model):
             db.session.add(p)
             db.session.commit()
             if p.id % 3 == 0:
-                create_planet(owner, name)
+                create_planet()
             return p
         except IntegrityError:
             return create_planet(owner, name)
