@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block header %}
+	<link href="{{ url_for("static", filename="css/holomail.css") }}" rel="stylesheet">
+    <section class="header">
+        <h1>Allianz</h1>
+    </section>
+{% endblock %}
+{% block content %}
+    {% if alliances==None %}
+        <section class="border">
+            <div class="div">
+                Du bist in noch keiner Allianz. <a href="{{ url_for("alliance_new") }}">Allianz erstellen.</a>
+            </div>
+        </section>
+    {% else %}
+        <section class="border">
+            <div class="div">
+                <table class="mailtable" border="0" cellpadding="5" cellspacing="5">
+                    <tr>
+                        <td>
+                            Allianzname
+                        </td>
+                        <td>
+                            Gründer
+                        </td>
+                    </tr>
+                    {% for alliance in alliances %}
+                        <tr onclick="window.document.location='{{ url_for("alliance_detail", id=alliance.id) }}'">
+                            <td>
+                                {{ alliance.name }}
+                            </td>
+                            <td>
+                                {{ alliance.owner.username }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+    {% endif %}
+{% endblock %}
