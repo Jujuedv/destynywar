@@ -10,9 +10,9 @@ def validate_receiver(form, field):
         raise ValidationError("User does not exist")
 
 
-class MailForm(FlaskForm):
+class HolopostForm(FlaskForm):
 
-    receiver = StringField("Empfänger", validators=[DataRequired(), validate_receiver])
+    receiver = StringField("An", validators=[DataRequired(), validate_receiver])
     subject = StringField("Betreff", validators=[DataRequired()])
     body = TextAreaField("Nachricht")
     submit = SubmitField("Senden", description="Senden!")

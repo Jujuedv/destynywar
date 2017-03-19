@@ -9,7 +9,7 @@ from app.models.user import User
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        if User.create_user(form.username.data, form.email.data, form.password.data):
+        if User.create_user(form.username.data, form.password.data):
             flash("Account wurde erstellt. Bitte einloggen.")
             return redirect("login")
         else:

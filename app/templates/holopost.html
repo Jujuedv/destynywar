@@ -1,0 +1,28 @@
+{% include "drawheader.html" %}
+<table>
+<tr><td><b>Gelesen</b>:&nbsp;</td><td><b>Betreff</b>:&nbsp;&nbsp;&nbsp;</td><td><b>Gespr&auml;chs-<br/>partner</b>:</td><td><b>Gespr&auml;chspartner<br/>gelesen</b>:</td></tr>
+<tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    {% for mail in mails %}
+        <tr><td style="text-align:right;"><img src="{{ url_for("static", filename="images/HolomailGelesen.png") if mail.is_read(g.user) else url_for("static", filename="images/HolomailNeu.png") }}" style="height:20px; text-align:right;" /></td>
+            <td><a href="{{ url_for("holopost_read", id=mail.id) }}">{{ mail.betreff }}</a></td>
+            <td>{{ mail.partner().username }}</td>
+            <td><img src="{{ url_for("static", filename="images/HolomailGelesen.png") if mail.is_read(mail.partner()) else url_for("static", filename="images/HolomailNeu.png") }}" style="height:20px;" /></td></tr>
+    {% endfor %}
+</table>
+<br/><br/>
+<a href="#senden" id="Send_holo" onclick="document.getElementById('answer').style.display = '';document.getElementById('Send_holo').style.display =  'none';">Holonachricht senden</a>
+<div id="answer" name="answer" style="display:none;">
+	<form id="new_holo" name="new_holo" method="POST">
+        {{ form.hidden_tag() }}
+		<table>
+			<tr><td valign="top">An:</td><td valign="top">{{ form.receiver(id="at", size=50) }}</td></tr>
+			<tr><td valign="top">Betreff:</td><td valign="top">{{ form.subject(id="betreff", size=50) }}</td></tr>
+			<tr><td valign="top">Nachricht:</td><td valign="top">{{ form.body(rows=10, cols=50) }}</td></tr>
+		</table>
+		{{ form.submit(value="Abschicken") }}
+	</form>
+</div>
+<br/>
+<a href="{{ url_for("holopost_delete_read") }}" onclick="if(confirm('Wiklich alle gelesenen Nachrichten l&ouml;schen?') == false){return false;}">Alle gelesenen Nachrichten l&ouml;schen</a>
+
+{% include "drawfooter.html" %}

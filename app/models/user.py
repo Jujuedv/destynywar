@@ -2,21 +2,19 @@ from passlib.hash import pbkdf2_sha256
 from sqlalchemy.exc import IntegrityError
 
 from app import db
-from app.models.holomail import Holomail
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
     planets = db.relationship('Planet', back_populates='owner')
-    mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
-    mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic",
-                                     foreign_keys="Holomail.receiver_id")
+    mails_sent = db.relationship("Holopost_Betreffs", backref="sender", lazy="dynamic", foreign_keys="Holopost_Betreffs.from_id")
+    mails_received = db.relationship("Holopost_Betreffs", backref="receiver", lazy="dynamic",
+                                     foreign_keys="Holopost_Betreffs.to_id")
+    messages_sent = db.relationship("Holopost_Nachrichten", backref="user", lazy="dynamic", foreign_keys="Holopost_Nachrichten.user_id")
 
-    def __init__(self, username, email, password):
+    def __init__(self, username, password):
         self.username = username
-        self.email = email
         self.password = pbkdf2_sha256.using(rounds=8000, salt_size=10).hash(password)
 
     @property
@@ -37,17 +35,15 @@ class User(db.Model):
     def validate(self, password):
         return pbkdf2_sha256.verify(password, self.password)
 
-    def allowed_to_read(self, mail):
-        if mail.sender == self or mail.receiver == self:
-            return True
-        return False
-
     def __repr__(self):
         return "<User {}>".format(self.username)
 
-    def all_mails_read(self):
+    def are_all_mails_read(self):
         for mail in self.mails_received:
-            if not mail.read:
+            if not mail.read_to:
+                return False
+        for mail in self.mails_sent:
+            if not mail.read_from:
                 return False
         return True
 
@@ -56,9 +52,9 @@ class User(db.Model):
         return User.query.filter_by(username=username).first()
 
     @staticmethod
-    def create_user(username, email, password):
+    def create_user(username, password):
         try:
-            user = User(username, email, password)
+            user = User(username, password)
             db.session.add(user)
             db.session.commit()
             return True

@@ -1,0 +1,31 @@
+{% include "drawheader.html" %}
+<table>
+	<tr>
+        <td valign="top" style='background-color:#555'>Betreff:</td>
+        <td valign="top" style='background-color:#555'>{{ mail.betreff }}</td></tr>
+	<tr>
+        <td valign="top" style='background-color:#555'>Gespr&auml;chspartner:&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" style='background-color:#555'>{{ mail.partner().username }}</td></tr>
+</table>
+<br/>
+<table colspan="1" border="0">
+{% for nachricht in mail.nachrichten %}
+    	<tr>
+            <td valign="top" style="background-color:#{{ 555 if loop.index%2 else 333}};">{{ nachricht.user.username }}
+            <br/>{{ nachricht.user.id }}. Platz
+            <br/>{{ nachricht.user.id }} Punkte
+            <br/></td>
+            <td  valign="top" style="background-color:#{{ 555 if loop.index%2 else 333}};">{{ nachricht.message }}</td></tr>
+{% endfor %}
+</table><br/>
+
+<a href="#senden" id="Send_holo" onclick="document.getElementById('answer').style.display = '';document.getElementById('Send_holo').style.display =  'none';">Antworten</a>&nbsp;&nbsp;&nbsp;<a href="{{ url_for("holopost_delete", id=mail.id) }}" id="Send_holo" onclick="if(confirm('Wiklich löschen?') == false){return false;}">löschen</a>&nbsp;&nbsp;&nbsp;
+<div id="answer" name="answer" style="display:none;">
+	<form id="new_holo" name="BB_JUMP" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.body(rows=10, cols=50) }}
+		<br/>
+		<center>{{ form.submit(value="Abschicken") }}</center>
+	</form>
+</div>
+{% include "drawfooter.html" %}

@@ -1,23 +1,149 @@
-{% extends "base.html" %}
-{% block header %}
-	<section class="text-center">
-		<img src="static/images/cooltext2.png"/>
-	</section>
-{% endblock %}
-{% block content %}
-	<section class="border">
-		<div class="half-left div">
-			{% include "form.html" %}
-		</div>
-		<div class="half-right">
-						<p id="dw_desc">Destyny War ist ein Browsergame, das in der Zukunft
-							spielt. Jeder Spieler ist Besitzer eines Planeten, mit dessen Hilfe er das Universum
-							beherschen kann.<br> </p>
-		</div>
-        <div class="half-right text-center">
-            <a href="{{ url_for("register") }}"><img style="border-style: none;" src="static/images/button.png" alt="Jetzt mitspielen."/></a>
-        </div>
-	</section>
-                    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Destyny War</title>
+    <link rel="shortcut icon" href="{{ url_for("static", filename="images/logo.jpg") }}"/>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            background: #2C2C2C url({{ url_for("static", filename="images/star_start.png") }}) repeat;
+        }
 
-{% endblock %}
+        .background_layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 652px;
+            background: transparent url({{ url_for("static", filename="images/starbg.png") }}) no-repeat top center;
+        }
+
+        .tp {
+            opacity: 0.700;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #00FF00;
+            background-color: #111;
+        }
+
+        .col > td {
+        }
+
+        * {
+            font-size: 5mm;
+        }
+
+        h1 {
+            font-size: 20mm;
+        }
+
+        h2 {
+            font-size: 9mm;
+        }
+
+        h3 {
+            font-size: 8mm;
+        }
+
+        h4 {
+            font-size: 7mm;
+        }
+
+        h5 {
+            font-size: 6mm;
+        }
+
+        h6 {
+            font-size: 5mm;
+        }
+
+        a:link {
+            color: #FFFFEE;
+        }
+
+        a:visited {
+            color: #FFFFEE;
+        }
+
+        a:active {
+            color: #FFFFEE;
+        }
+
+        .kasten {
+            border: 3px inset rgb(0, 0, 0);
+        }
+
+        .brett {
+            border: 3px outset rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<center>
+    <table border="0" cellpadding="5" cellspacing="10" class="main">
+        {% include "mainpageheader.html" %}
+        <tr>
+            <td class="tp" style="text-align:center;"><img src="{{ url_for("static", filename="images/cooltext2.png") }}"/></td>
+        </tr>
+        <tr>
+            <td class="tp">
+                <table border="0" cellpadding="5" cellspacing="5">
+                    <tr>
+                        <td>
+
+                            <form class="kasten" target="_top" method="post" name="login"><br>
+                                {{ form.hidden_tag() }}
+                                {% if form.errors %}
+                                    <center style="color:#FF0000;">Benutzername oder Passwort falsch</center>
+                                {% endif %}
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Benutzername:&nbsp; </td>
+                                        <td>{{ form.username(maxlength=20, size=20) }}&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">&nbsp;&nbsp;&nbsp;Passwort:</td>
+                                        <td>{{ form.password(maxlength=20, size=20) }}&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ form.submit(value="Einloggen") }}&nbsp;&nbsp;&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                            </form>
+                        </td>
+                        <td>
+                            <p style="width: 300px;" valign="top">Destyny War ist ein Browsergame, das in der Zukunft
+                                spielt. Jeder Spieler ist
+                                Besitzer eines Planeten, mit dessen Hilfe er das Universum beherschen kann. </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right;">
+                            <a href="{{ url_for("register") }}"><img style="border-style: none;" src="{{ url_for("static", filename="images/button.png") }}"
+                                                        alt="Jetzt mitspielen."/></a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    {% for message in messages %}
+        <tr>
+            <td class="tp" style="text-align:center;">
+                {{ message.body }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</center>
+<br>
+</body>
+</html>

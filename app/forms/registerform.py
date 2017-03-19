@@ -5,7 +5,6 @@ from wtforms.validators import DataRequired, EqualTo, Email
 class RegisterForm(RedirectForm):
 
     username = StringField("Username", validators=[DataRequired()])
-    email = StringField("Email", validators=[Email()])
     password = PasswordField("Password", validators=[DataRequired(), EqualTo("password_rep", message="Passwortwiederholung falsch.")])
     password_rep = PasswordField("Wiederholung", validators=[DataRequired()])
     submit = SubmitField("Registrieren")
