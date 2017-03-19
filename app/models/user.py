@@ -9,6 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True)
     password = db.Column(db.String(128))
+    chat = db.Column(db.Boolean, default=False)
     planets = db.relationship('Planet', back_populates='owner')
     mails_sent = db.relationship("Holomail", backref="sender", lazy="dynamic", foreign_keys="Holomail.sender_id")
     mails_received = db.relationship("Holomail", backref="receiver", lazy="dynamic",
@@ -30,6 +31,9 @@ class User(db.Model):
     @property
     def is_anonymous(self):
         return False
+
+    def wants_chat(self):
+        return self.chat;
 
     def get_id(self):
         return str(self.id)
