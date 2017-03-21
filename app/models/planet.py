@@ -61,7 +61,6 @@ class Planet(db.Model):
         self.owner = owner
         self.lastupdate = datetime.now()
 
-    # this cant be used yet... will have to look into it
     def get_res_db_handles(self):
         return {"platinum": self.res_platinum,
                 "plasma": self.res_plasma,
@@ -71,7 +70,14 @@ class Planet(db.Model):
                 "steel": self.res_steel,
                 }
 
-    # this cant be used yet... will have to look into it
+    def set_res_db_handles(self, res):
+        self.res_platinum = res["platinum"]
+        self.res_plasma = res["plasma"]
+        self.res_energy = res["energy"]
+        self.res_plasmid = res["plasmid"]
+        self.res_food = res["food"]
+        self.res_steel = res["steel"]
+
     def get_build_db_handles(self):
         return {"senate": self.build_senate,
                 "spaceport": self.build_spaceport,
@@ -84,6 +90,18 @@ class Planet(db.Model):
                 "lab": self.build_lab,
                 "storage": self.build_storage,
                 }
+
+    def set_build_db_handles(self, builds):
+        self.build_senate = builds["senate"]
+        self.build_spaceport = builds["spaceport"]
+        self.build_shield = builds["shield"]
+        self.build_farm = builds["farm"]
+        self.build_market = builds["market"]
+        self.build_smeltery = builds["smeltery"]
+        self.build_mine = builds["mine"]
+        self.build_reactor = builds["reactor"]
+        self.build_lab = builds["lab"]
+        self.build_storage = builds["storage"]
 
     def get_production(self):
         return {"platinum": production[self.build_mine],
@@ -129,19 +147,15 @@ class Planet(db.Model):
     def update_ressources(self, time):
         if time <= self.lastupdate:
             return
-        res = self.get_ressources(time)
-        self.res_platinum = res["platinum"]
-        self.res_plasma = res["plasma"]
-        self.res_energy = res["energy"]
-        self.res_plasmid = res["plasmid"]
-        self.res_food = res["food"]
-        self.res_steel = res["steel"]
+        self.set_res_db_handles(self.get_ressources(time))
         self.lastupdate = time
         db.session.commit()
 
     def change_building(self, build, amount, time):
         self.update_ressources(time)
-        self.get_build_db_handles()[build] += amount
+        builds = self.get_build_db_handles()
+        builds[build] += amount
+        self.set_build_db_handles(builds)
         db.session.commit()
 
     def get_ressource_data(self, time):
@@ -184,12 +198,12 @@ class Planet(db.Model):
     def get_single_building_data(self, building, build, build_plus):
         Building = namedtuple("Building",
                               ["name", "internalname", "level", "level_plus", "minlevel", "maxlevel", "description",
-                               "platinum", "energy", "steel", "plasma", "plasmid", "food", "build_time"])
+                               "platinum", "energy", "steel", "plasma", "plasmid", "food", "farm_needed", "build_time"])
 
         for data in buildings:
             if data["intname"] == building:
                 level = build[data["intname"]]
-                level_plus = build[data["intname"]]
+                level_plus = build_plus[data["intname"]]
                 return Building(
                     name=data["name"],
                     internalname=data["intname"],
@@ -203,6 +217,7 @@ class Planet(db.Model):
                     plasma=int(data["plasma"] * pow(data["cost_factor"], level + level_plus + 1)),
                     plasmid=int(data["plasmid"] * pow(data["cost_factor"], level + level_plus + 1)),
                     food=int(data["food"] * pow(data["cost_factor"], level + level_plus + 1)),
+                    farm_needed=int(data["farm_needed"] * pow(data["cost_factor"], level + level_plus + 1)),
                     build_time=int(data["build_time"] * pow(data["time_factor"], level + level_plus + 1)),
                     description=data["description"],
                 )
@@ -218,7 +233,7 @@ class Planet(db.Model):
             self.get_single_building_data("shield", build, build_plus),
             self.get_single_building_data("farm", build, build_plus),
             self.get_single_building_data("market", build, build_plus),
-            self.get_single_building_data("schmelze", build, build_plus),
+            self.get_single_building_data("smeltery", build, build_plus),
             self.get_single_building_data("mine", build, build_plus),
             self.get_single_building_data("reactor", build, build_plus),
             self.get_single_building_data("lab", build, build_plus),

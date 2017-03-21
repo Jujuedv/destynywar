@@ -218,6 +218,8 @@ buildings = [
     {
         "intname": "storage",
         "minlevel": 0,
+        "maxlevel": 35,
+        "name": "Lagerhalle",
         "platinum": 42,
         "energy": 125,
         "steel": 142,
