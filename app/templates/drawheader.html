@@ -229,40 +229,17 @@
                 <div>
                     <h6>Rohstoffe:</h6>
                             <table>
-                                <tr>
-                                    <td>Platin:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Stahl:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Energie:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Plasma:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Plasmid:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nahrung:</td>
-                                    <td>0&nbsp;-&nbsp;0
-                                    </td>
-                                </tr>
+                                {% with ressources = g.planet.get_ressource_data(g.time) %}
+                                    {% for res in ressources %}
+                                        <tr>
+                                            <td>{{ res.name }}:</td>
+                                            <td>{{ res.production }}&nbsp;-&nbsp;{{ res.amount }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endwith %}
                                 <tr>
                                     <td>Freie Bev&ouml;lkerung:</td>
-                                    <td>0
-                                    </td>
+                                    <td>0(TODO)</td>
                                 </tr>
                                 <tr>
                                     <td>Moral:</td>
@@ -272,7 +249,14 @@
                             <br/>
                             <h6>Geb&auml;ude:</h6>
                             <table>
-                                Hier eine Liste der Gebäude
+                                {% with buildings = g.planet.get_buildings_data() %}
+                                    {% for build in buildings %}
+                                        <tr>
+                                            <td>{{ build.name }}</td>
+                                            <td>(Stufe:&nbsp;{{ build.level }})</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endwith %}
                             </table>
                 </div>
             </td>
