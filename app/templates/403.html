@@ -1,14 +1,4 @@
-{% extends "base.html" %}
-{% block header %}
-{% endblock %}
-{% block content %}
-	<section class="header">
-		<h1>VERBOTEN!</h1>
-	</section>
-	<section class="border">
-		<div class="div">
-			<p>Du hast nicht die Berechtigung, um diese Seite einzusehen.</p>
-			<a href="{{ url_for("index") }}">Weg von hier!</a>
-		</div>
-	</section>
-{% endblock %}
+<h1>VERBOTEN!</h1>
+
+<p>Du hast nicht die Berechtigung, um diese Seite einzusehen.</p>
+<a href="{{ url_for("planet_overview") }}">Weg von hier!</a>

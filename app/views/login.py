@@ -24,7 +24,7 @@ def login():
         if user and user.validate(form.password.data):
             login_user(user)
             flash("Logged in successfully.")
-            return form.redirect("index")
+            return form.redirect("planet")
         else:
             flash("Password incorrect.")
     return render_template("login.html", form=form, title="Login", messages=messages)
@@ -33,4 +33,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("login"))
+    return redirect(url_for("planet_overview"))

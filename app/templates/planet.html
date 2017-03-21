@@ -1,0 +1,115 @@
+{% include "drawheader.html" %}
+
+<a href='#changename'><h1>{{ planet.name }}</h1></a>
+</center>
+<table>
+    <tr>
+        <td>
+            Spieler:
+        </td>
+        <td>
+            <a href="#player">{{ planet.owner.username }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Allianz:
+        </td>
+        <td>
+            <a href="#allianz">Allianz</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Punkte:
+        </td>
+        <td>
+            {{ planet.points }}
+        </td>
+    </tr>
+</table>
+<a href="#karte">Planet zentrieren</a><br/>
+<center>
+    {% if planet.owner != g.user %} {# Wenn Feindlich #}
+        <h1>Angreifen</h1>
+        <form method="post" name="form_attack">
+        {{ form_attack.hidden_tag() }}
+            <table>
+                {% for unit in g.planet.units %}
+                    {% if unit.name == "President" and planet.points < 1500 and planet.owner != None %}
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan=\"3\">Man kann keine Planeten von echten Spielern mit weniger als 1500 Punkten &uuml;bernehmen.</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ unit.name }}:</td>
+                            <td>{{ form_attack.unit_fields[unit.name](size=5, value=0, id=unit.name) }}</td>
+                            <td>&nbsp;&nbsp;max: <a href="#"
+                                                    onclick="$('{{ unit.name }}').value=($('{{ unit.name }}').value != '{{ unit.db }}')?'{{ unit.db }}':'0';">{{ unit.db }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {{ form_attack.submit(value="Angreifen", size=5) }}
+        </form>
+    {% else %} {# Wenn Freundlich #}
+        {% if g.planet.build_market > 0 %}
+            <h4>Rohstoffe verschicken</h4>
+            <form method="POST" name="form_resources">
+                {{ form_resources.hidden_tag() }}
+                <table border="1">
+                    <tr>
+                        <td><b>Rohstoff</b></td>
+                        {% for resource in planet.resources %}
+                            <td>resource.name</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td><b>Menge</b></td>
+                        {% for resource in planet.resources %}
+                            <td>{{ form_resources.resource_fields[resource.name](size=7, value=0, id=resource.name) }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td><b>max.</b></td>
+                        {% for resource in planet.resources %}
+                            <td><a href="#"
+                                   onclick="$('{{ resource.name }}').value=($('{{ resource.name }}').value != '{{ resource.db }}')?'{{ resource.db }}':'0';">{{ resource.db }}</a>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+                {{ form_resources.submit(value="versenden") }}
+            </form>
+            <br/><br/>
+
+            <br/><br/>
+            <h4>Truppen verschenken</h4>
+            <form method="post" name="form_units">
+                {{ form_units.hidden_tag() }}
+                <table border="1px">
+                    <tr>
+                        <td>Freie Plätze:</td>
+                        <td>12345</td>
+                        <td></td>
+                    </tr>
+                    {% for unit in g.planet.units %}
+                        <tr>
+                            <td>{{ unit.name }}:</td>
+                            <td>{{ form_units.unit_fields[unit.name](size=5, value=0, id=unit.name) }}</td>
+                            <td>&nbsp;&nbsp;max: <a href="#"
+                                                    onclick="$('{{ unit.name }}').value=($('{{ unit.name }}').value != '{{ unit.db }}')?'{{ unit.db }}':'0';">{{ unit.db }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {{ form_units.submit(value="Verschenken", size=5, onclick="if(confirm('Willst du diese Truppen wirklich verschenken?') == false) return false;") }}
+            </form>
+
+        {% endif %}
+    {% endif %}
+{% include "drawfooter.html" %}
