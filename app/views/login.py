@@ -9,7 +9,8 @@ from datetime import datetime
 @app.before_request
 def before_request():
     g.user = current_user
-    g.servertime = datetime.now().timestamp()
+    g.time = datetime.now()
+    g.servertime = g.time.timestamp()
 
 @lm.user_loader
 def load_user(id):
