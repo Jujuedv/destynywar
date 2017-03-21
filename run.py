@@ -1,4 +1,11 @@
 #!/bin/python3
 
-from app import app
-app.run(debug=True)
+if __name__ == '__main__':
+    try:
+        from app import app, scheduler
+
+        scheduler.start()
+        app.run(debug=True, use_reloader=False)
+    except:
+        scheduler.shutdown(wait=True)
+        raise
